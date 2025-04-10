@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class FlowerBedCalculator {
     public static void main(String[] args) {
         int radius;
-        double surface;
+        double area;
         double circumf;
 
         Scanner input = new Scanner(System.in);
@@ -14,11 +14,11 @@ public class FlowerBedCalculator {
         System.out.print("\n");
 
         circumf = 2 * radius * Math.PI;
-        surface = Math.PI * Math.pow(radius,2);
+        area = Math.PI * Math.pow(radius,2);
 
         String resCircumf = String.format("Flowerbed circumference: %.2f", circumf);
         System.out.println(resCircumf);
-        String resultArea = String.format("Flowerbed circumference: %.2f", surface);
+        String resultArea = String.format("Flowerbed circumference: %.2f", area);
         System.out.println(resultArea);
 
         input.close();
