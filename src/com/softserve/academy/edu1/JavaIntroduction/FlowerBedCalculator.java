@@ -18,7 +18,7 @@ public class FlowerBedCalculator {
 
         String resCircumf = String.format("Flowerbed circumference: %.2f", circumf);
         System.out.println(resCircumf);
-        String resultArea = String.format("Flowerbed circumference: %.2f", area);
+        String resultArea = String.format("Flowerbed area: %.2f", area);
         System.out.println(resultArea);
 
         input.close();
