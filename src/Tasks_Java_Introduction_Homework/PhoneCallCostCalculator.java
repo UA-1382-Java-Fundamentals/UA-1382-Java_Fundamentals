@@ -23,6 +23,8 @@ public class PhoneCallCostCalculator {
         System.out.println("The duration of 3 call :");
          t3 = sc.nextInt();
 
+         sc.close();
+
          double cost1 = c1 * t1;
          double cost2 = c2 * t2;
          double cost3 = c3 * t3;
