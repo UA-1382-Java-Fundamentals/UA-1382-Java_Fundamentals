@@ -1,4 +1,4 @@
-package softserve.academy.edu1.JavaIntroduction;
+package softserve.academy.edu1.hw1;
 
 import java.util.Scanner;
 
