@@ -35,7 +35,5 @@ public class PhoneCallCostCalculator {
         System.out.println("The cost of 3 call is: " + cost3);
         System.out.println("The total cost of all calls is: " + totalCost);
 
-
-        System.out.println("The total cost of all calls is: " + totalCost);
     }
 }
