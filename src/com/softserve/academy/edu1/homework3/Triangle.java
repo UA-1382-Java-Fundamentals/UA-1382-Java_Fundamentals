@@ -2,11 +2,11 @@ package homework3;
 
 import java.util.Scanner;
 
-public class TriangleOrNumber {
+public class Triangle {
     private int sideA;
     private int sideB;
     private int sideC;
-    public TriangleOrNumber (int sideA, int sideB, int sideC) {
+    public Triangle (int sideA, int sideB, int sideC) {
         this.sideA = sideA;
         this.sideB = sideB;
         this.sideC = sideC;
@@ -31,7 +31,7 @@ public class TriangleOrNumber {
         System.out.println("Enter third number/side: ");
         int side3 = getNumber(scanner);
         scanner.close();
-        TriangleOrNumber triangle = new TriangleOrNumber(side1, side2, side3);
+        Triangle triangle = new Triangle(side1, side2, side3);
         double area = triangle.getArea();
         System.out.println("The area of the triangle is: " + area);
         System.out.println("The smallest number or side of the triangle is: " + triangle.smallestSideOrSmallestNumber());
