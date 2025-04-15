@@ -23,8 +23,7 @@ public class HumanResources {
         System.out.println("His salary was " + emp3.getSalary() + " and bonuses were " + emp3.getBonuses());
         System.out.println("He earned " + emp3.getPaycheck() + " this week overall.\n");
 
-        double totalPaycheck = emp1.getPaycheck() + emp2.getPaycheck() + emp3.getPaycheck();
-        String finalReport = String.format("A total of %d employees got a total paycheck of %.2f", Employee.getTotalSum(), totalPaycheck);
+        String finalReport = String.format("A total of %d employees got a total paycheck of %.2f", Employee.getTotalEmployees(), Employee.getTotalSum());
         System.out.println(finalReport);
     }
 }

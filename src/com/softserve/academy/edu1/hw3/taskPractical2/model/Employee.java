@@ -6,6 +6,7 @@ public class Employee {
     private String name;
     private int rate;
     private int hours;
+    private static double totalSum = 0;
 
     public Employee() {
         totalEmployees++;
@@ -20,9 +21,14 @@ public class Employee {
         this(name);
         this.rate = rate;
         this.hours = hours;
+        totalSum += getPaycheck();
     }
 
-    public static int getTotalSum() {
+    public static double getTotalSum() {
+        return totalSum;
+    }
+
+    public static int getTotalEmployees() {
         return totalEmployees;
     }
 
