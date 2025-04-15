@@ -1,1 +1,5 @@
 .vscode
+.idea
+UA-1382.iml
+bin
+lib

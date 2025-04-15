@@ -2,25 +2,19 @@ import java.util.Scanner;
 
 public class PhoneCallCostCalculator {
     public static void main(String[] args) {
-        int c1;
-        int c2;
-        int c3;
-        int t1;
-        int t2;
-        int t3;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the cost per minute for the first call: ");
-        c1 = scanner.nextInt();
+        int c1 = scanner.nextInt();
         System.out.println("Enter the cost per minute for the second call: ");
-        c2 = scanner.nextInt();
+        int c2 = scanner.nextInt();
         System.out.println("Enter the cost per minute for the third call: ");
-        c3 = scanner.nextInt();
+        int c3 = scanner.nextInt();
         System.out.println("Enter the duration of the first call in minutes: ");
-        t1 = scanner.nextInt();
+        int t1 = scanner.nextInt();
         System.out.println("Enter the duration of the second call in minutes: ");
-        t2 = scanner.nextInt();
+        int t2 = scanner.nextInt();
         System.out.println("Enter the duration of the third call in minutes: ");
-        t3 = scanner.nextInt();
+        int t3 = scanner.nextInt();
         scanner.close();
         int cost1 = c1 * t1;
         int cost2 = c2 * t2;
