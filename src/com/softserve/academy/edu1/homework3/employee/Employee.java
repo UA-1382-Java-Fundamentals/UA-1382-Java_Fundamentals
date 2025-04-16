@@ -1,28 +1,23 @@
 package homework3.employee;
 
 public class Employee {
+    public static final double BONUS_RATE = 0.1;
     private String name;
-    private int rate;
-    private int hours;
-    private static int totalSum = 0;
+    private double rate;
+    private double hours;
+    private static double totalSalary = 0.0;
 
     public Employee() {
-        this.name = "";
-        this.rate = 0;
-        this.hours = 0;
-    }
-
-    public Employee(String name, int rate, int hours) {
-        this.name = name;
-        this.rate = rate;
-        this.hours = hours;
-        totalSum += getSalary();
     }
 
     public Employee(String name) {
         this.name = name;
-        this.rate = 0;
-        this.hours = 0;
+    }
+
+    public Employee(String name, double rate, double hours) {
+        this.name = name;
+        setHours(rate);
+        setRate(hours);
     }
 
     public String getName() {
@@ -33,32 +28,38 @@ public class Employee {
         this.name = name;
     }
 
-    public int getRate() {
+    public double getRate() {
         return rate;
     }
 
-    public void setRate(int rate) {
+    public void setRate(double rate) {
+        double oldSalary = getSalary();
         this.rate = rate;
+        double newSalary = getSalary();
+        totalSalary += newSalary - oldSalary;
     }
 
-    public int getHours() {
+    public double getHours() {
         return hours;
     }
 
-    public void setHours(int hours) {
+    public void setHours(double hours) {
+        double oldSalary = getSalary();
         this.hours = hours;
+        double newSalary = getSalary();
+        totalSalary += newSalary - oldSalary;
     }
 
-    public int getSalary() {
+    public double getSalary() {
         return rate * hours;
     }
 
     public double getBonus() {
-        return getSalary() * 0.1;
+        return getSalary() * BONUS_RATE;
     }
 
-    public static int getTotalSum() {
-        return totalSum;
+    public static double getTotalSalary() {
+        return BONUS_RATE*totalSalary+totalSalary;
     }
 
     @Override
