@@ -12,17 +12,17 @@ public class TwoNumbers {
         scanner.close();
     }
 
-    public static void getTotal(int num1, int num2) {
+    private static void getTotal(int num1, int num2) {
         int total = num1 + num2;
         System.out.println("Total: " + total);
     }
 
-    public static void getAverage(int num1, int num2) {
+    private static void getAverage(int num1, int num2) {
         double average = (num1 + num2) / 2.0;
         System.out.println("Average: " + average);
     }
 
-    public static int getNumber(Scanner scanner, String message) {
+    private static int getNumber(Scanner scanner, String message) {
         System.out.println(message);
         return scanner.nextInt();
     }
