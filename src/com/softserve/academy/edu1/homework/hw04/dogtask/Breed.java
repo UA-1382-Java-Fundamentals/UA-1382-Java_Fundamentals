@@ -1,0 +1,24 @@
+package com.softserve.academy.edu1.homework.hw04.dogtask;
+
+public enum Breed {
+    LABRADOR_RETRIEVER,
+    GERMAN_SHEPHERD,
+    GOLDEN_RETRIEVER,
+    FRENCH_BULLDOG,
+    BULLDOG,
+    POODLE,
+    BEAGLE,
+    ROTTWEILER,
+    YORKSHIRE_TERRIER,
+    BOXER,
+    DACHSHUND,
+    SIBERIAN_HUSKY,
+    GREAT_DANE,
+    DOBERMAN_PINSCHER,
+    SHIH_TZU,
+    CHIHUAHUA,
+    BORDER_COLLIE,
+    AUSTRALIAN_SHEPHERD,
+    POMERANIAN,
+    MALTESE;
+}

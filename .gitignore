@@ -1,39 +1,108 @@
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+# === Java ===
+# Compiled class files
+*.class
 
-### IntelliJ IDEA ###
-.idea
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
+# Log files
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Java EE
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# Eclipse
+.project
+.classpath
+.settings/
+.recommenders/
+
+# IDEA/Maven/Gradle wrapper
+.eclipse/
+.settings/
+.factorypath
+
+# === Build Directories ===
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# Gradle
+.gradle/
+build/
+
+# Ant
+build/
+dist/
+
+# === IntelliJ IDEA ===
+# User-specific stuff:
+.idea/
 *.iws
+.idea_modules/
+
+# Module files
 *.iml
 *.ipr
 
-### Eclipse ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
+# IntelliJ project settings folder
+.idea/
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+# IntelliJ caches
+out/
+*/out/
 
-### VS Code ###
-.vscode/
+# JetBrains Rider
+.idea/
+*.sln.iml
 
-### Mac OS ###
+# === OS Specific ===
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon?
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Trash folder which may appear on external disk
+.Trashes
+
+# End of https://www.toptal.com/developers/gitignore/api/java,intellij
