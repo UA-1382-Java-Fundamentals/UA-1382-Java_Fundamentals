@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class FlowerBedCalculator {
     public static void main(String[] args)  {
+
         Scanner sc = new Scanner(System.in);
         System.out.print("Введіть радіус клумби: ");
         int radius = sc.nextInt();
@@ -12,5 +13,6 @@ public class FlowerBedCalculator {
         System.out.printf("Периметр клумби: %.2f\n", perimeter);
         System.out.printf("Площа клумби: %.2f\n", area);
 
+        sc.close();
     }
 }

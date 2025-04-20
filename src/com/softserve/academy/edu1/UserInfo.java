@@ -12,5 +12,7 @@ public class UserInfo {
         System.out.print("Яка ваша адреса, " + name + "? ");
         address = sc.nextLine();
         System.out.println("Ім'я: " + name + ", адреса: " + address);
+
+        sc.close();
     }
 }

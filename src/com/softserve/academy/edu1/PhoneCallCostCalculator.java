@@ -4,11 +4,9 @@ import java.util.Scanner;
 
 public class PhoneCallCostCalculator {
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
 
         double c1, c2, c3;
-
         double t1, t2, t3;
 
         System.out.print("Введіть вартість за 1 хвилину першого дзвінка: ");
@@ -40,6 +38,6 @@ public class PhoneCallCostCalculator {
         System.out.printf("Вартість третього дзвінка: %.2f\n", cost3);
         System.out.printf("Загальна вартість всіх дзвінків: %.2f\n", totalCost);
 
-        }
+        sc.close();
+    }
 }
-
