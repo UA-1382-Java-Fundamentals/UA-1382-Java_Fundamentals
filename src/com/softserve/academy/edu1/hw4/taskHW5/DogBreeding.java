@@ -1,5 +1,7 @@
 package softserve.academy.edu1.hw4.taskHW5;
 
+import java.util.Objects;
+
 enum Breed {
     SHEPHERD("Shepherd"),
     BULLDOG("Bulldog"),
@@ -9,7 +11,8 @@ enum Breed {
     MALAMUTE("Malamute"),
     POODLE("Poodle"),
     CHIHUAHUA("Chihuahua"),
-    DACHSHUND("Dachshund");
+    DACHSHUND("Dachshund"),
+    UNKNOWN("Unknown");
 
     private final String label;
 
@@ -33,7 +36,7 @@ enum Breed {
 
 class Dog {
     private final String name;
-    private final String breed;
+    private final Breed breed;
     private final int age;
 
     public Dog(String name, String breed, int age) {
@@ -41,10 +44,10 @@ class Dog {
         this.age = age;
         Breed breedInstance = Breed.matchBreed(breed);
         if (breedInstance != null) {
-            this.breed = breedInstance.getLabel();
+            this.breed = breedInstance;
         }
         else {
-            this.breed = "Unknown";
+            this.breed = Breed.UNKNOWN;
         }
     }
 
@@ -53,7 +56,7 @@ class Dog {
     }
 
     public String getBreed() {
-        return breed;
+        return breed.getLabel();
     }
 
     public int getAge() {
