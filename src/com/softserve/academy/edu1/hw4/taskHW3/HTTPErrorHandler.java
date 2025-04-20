@@ -3,12 +3,12 @@ package softserve.academy.edu1.hw4.taskHW3;
 import java.util.Scanner;
 
 enum HTTPError {
-    BADREQUEST(400,  "Bad Request"),
-    UNAUTHORIZED(401,  "Unauthorized"),
-    PAYMENTREQUIRED(402,  "Payment Required"),
+    BADREQUEST(400, "Bad Request"),
+    UNAUTHORIZED(401, "Unauthorized"),
+    PAYMENTREQUIRED(402, "Payment Required"),
     FORBIDDEN(403,"Forbidden"),
     NOTFOUND(404,"Not Found"),
-    METHODNOTALLOWED(405,  "Method Not Allowed");
+    METHODNOTALLOWED(405, "Method Not Allowed");
 
     private final int code;
     private final String label;

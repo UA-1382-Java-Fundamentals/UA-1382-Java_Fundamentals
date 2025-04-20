@@ -1,7 +1,5 @@
 package softserve.academy.edu1.hw4.taskHW5;
 
-import java.util.Objects;
-
 enum Breed {
     SHEPHERD("Shepherd"),
     BULLDOG("Bulldog"),
