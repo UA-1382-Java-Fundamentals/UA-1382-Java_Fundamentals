@@ -12,7 +12,7 @@ Call these methods from the main() method and print the results. For example:
 Enter the first number: 2
 Enter the second number: 5
 The sum of 2.0 and 5.0: 7.0
-The sum of 2.0 and 5.0: 3.5
+The average of 2.0 and 5.0: 3.5
  */
 
 package com.softserve.academy.hw3_pt1;
@@ -24,8 +24,8 @@ public class Main {
         obj.setNumberOne(obj.getNumber("Enter the first number:"));
         obj.setNumberTwo(obj.getNumber("Enter the second number:"));
 
-        obj.printResults(obj.getNumberOne(), obj.getNumberTwo(), obj.getTotal(obj.getNumberOne(), obj.getNumberTwo()));
-        obj.printResults(obj.getNumberOne(), obj.getNumberTwo(), obj.getAverage(obj.getNumberOne(), obj.getNumberTwo()));
+        obj.printResults("The sum of: ", obj.getNumberOne(), obj.getNumberTwo(), obj.getTotal());
+        obj.printResults("The average of: ", obj.getNumberOne(), obj.getNumberTwo(), obj.getAverage());
 
     }
 }

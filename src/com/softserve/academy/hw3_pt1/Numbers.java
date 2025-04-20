@@ -22,21 +22,21 @@ public class Numbers {
         this.numberTwo = numberTwo;
     }
 
-    protected double getNumber(String message) {
+    double getNumber(String message) {
         System.out.println(message);
         Scanner sc = new Scanner(System.in);
         return sc.nextDouble();
     }
 
-    protected double getTotal(double numOne, double numTwo) {
-        return numOne + numTwo;
+    double getTotal() {
+        return numberOne + numberTwo;
     }
 
-    protected double getAverage(double numOne, double numTwo) {
-        return (numOne + numTwo) / 2;
+    double getAverage() {
+        return (numberOne + numberTwo) / 2;
     }
 
-    protected void printResults(double numOne, double numTwo, double result) {
-        System.out.println("The sum of " + numOne + " and " + numTwo + ": " + result);
+    void printResults(String text, double numOne, double numTwo, double result) {
+        System.out.println(text + numOne + " and " + numTwo + ": " + result);
     }
 }
