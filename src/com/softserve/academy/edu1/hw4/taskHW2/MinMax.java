@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 class Calculator {
     public static HashMap getMinMax(int... numbers) {
-        HashMap<String, Integer> result = new HashMap<String, Integer>();
+        HashMap<String, Integer> result = new HashMap<>();
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
 
@@ -44,7 +44,7 @@ public class MinMax {
         result = Calculator.getMinMax(numbers);
 
         String resultMessage = String.format("The minimum number is %d\nThe maximum number is " +
-                "%d", result.get("Minimum"), result.get("Maximum"));
+                "%d", (int)result.get("Minimum"), (int)result.get("Maximum"));
         System.out.println(resultMessage);
 
     }
