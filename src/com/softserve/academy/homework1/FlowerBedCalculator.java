@@ -1,6 +1,5 @@
-package softserve.academy.edu1;
+package softserve.academy.homework1;
 
-import java.io.Console;
 import java.util.Scanner;
 
 public class FlowerBedCalculator {
