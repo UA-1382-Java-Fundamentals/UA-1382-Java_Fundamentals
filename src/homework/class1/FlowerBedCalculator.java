@@ -1,4 +1,4 @@
-package com.softserve.academy.edu1;
+package homework.class1;
 
 import java.util.Scanner;
 
