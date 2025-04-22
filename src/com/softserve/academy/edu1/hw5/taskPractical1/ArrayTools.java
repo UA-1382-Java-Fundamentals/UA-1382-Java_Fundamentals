@@ -20,7 +20,7 @@ public class ArrayTools {
         Random rand = new Random();
         for (int number: numbers) {
             numbers[i] = rand.nextInt(50);
-            sum += numbers[i];
+            sum += number;
             i++;
         }
         System.out.println("Here are the random numbers to calculate average: " + Arrays.toString(numbers));
@@ -37,6 +37,7 @@ public class ArrayTools {
         for (int number: numbers) {
             if (number == searchNumber) {
                 numberPresent = true;
+                break;
             }
         }
         if (numberPresent) {
