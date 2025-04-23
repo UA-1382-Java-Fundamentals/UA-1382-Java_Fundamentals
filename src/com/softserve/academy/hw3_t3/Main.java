@@ -17,7 +17,7 @@ package com.softserve.academy.hw3_t3;
 
 public class Main {
     public static void main(String[] args) {
-        Person.getPersonFromConsole();
-        Person.getPersonFromConsole();
+        Person person1 = Person.getPersonFromConsole();
+        Person person2 = Person.getPersonFromConsole();
     }
 }

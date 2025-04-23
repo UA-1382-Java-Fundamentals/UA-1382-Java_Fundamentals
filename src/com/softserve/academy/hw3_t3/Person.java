@@ -4,32 +4,32 @@ import java.time.Year;
 import java.util.Scanner;
 
 public class Person {
-    private static String firstName;
-    private static String lastName;
-    private static int birthYear;
+    private String firstName;
+    private String lastName;
+    private int birthYear;
 
-    public static String getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
-    public static void setFirstName(String firstName) {
-        Person.firstName = firstName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public static String getLastName() {
+    public String getLastName() {
         return lastName;
     }
 
-    public static void setLastName(String lastName) {
-        Person.lastName = lastName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public static int getBirthYear() {
+    public int getBirthYear() {
         return birthYear;
     }
 
-    public static void setBirthYear(int birthYear) {
-        Person.birthYear = birthYear;
+    public void setBirthYear(int birthYear) {
+        this.birthYear = birthYear;
     }
 
     Person() {
@@ -37,36 +37,38 @@ public class Person {
     }
 
     Person(String firstName, String lastName) {
-        Person.firstName = firstName;
-        Person.lastName = lastName;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public static int getAge() {
-        return Integer.parseInt(String.valueOf(Year.now())) - Integer.parseInt(String.valueOf(birthYear));
+    public int getAge() {
+        return Year.now().getValue() - birthYear;
     }
 
-    public static String input(String message) {
+    public String input(String message) {
         System.out.println(message);
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
     }
 
-    static void output(String text, String value) {
+    void output(String text, String value) {
         System.out.println(text + value);
     }
 
-    static void output(String text, int value) {
+    void output(String text, int value) {
         System.out.println(text + value);
     }
 
-    public static void getPersonFromConsole() {
-        Person.setFirstName(Person.input("Input first name:"));
-        Person.setLastName(Person.input("Input last name:"));
-        Person.setBirthYear(Integer.parseInt(Person.input("Input birthday year:")));
+    public static Person getPersonFromConsole() {
+        Person person = new Person();
+        person.setFirstName(person.input("Input first name:"));
+        person.setLastName(person.input("Input last name:"));
+        person.setBirthYear(Integer.parseInt(person.input("Input birthday year:")));
 
-        Person.output("First name: ", Person.getFirstName());
-        Person.output("Last name: ", Person.getLastName());
-        Person.output("Birthday year: ", Person.getBirthYear());
-        Person.output("Age is ", Person.getAge());
+        person.output("First name: ", person.getFirstName());
+        person.output("Last name: ", person.getLastName());
+        person.output("Birthday year: ", person.getBirthYear());
+        person.output("Age is ", person.getAge());
+        return person;
     }
 }
