@@ -51,6 +51,18 @@ public class Car implements Comparable<Car> {
         return engineCapacity;
     }
 
+    private static int inputYearOfProduction(Car[] cars) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the year of production: ");
+        int yearOfProduction = sc.nextInt();
+        while (yearOfProduction > getMaxYear(cars) || yearOfProduction < getMinYear(cars)) {
+            System.out.print("Invalid year of production. Try again: ");
+            yearOfProduction = sc.nextInt();
+            sc.nextLine();
+        }
+        return yearOfProduction;
+    }
+
     @Override
     public String toString() {
         return "Car{" +
@@ -75,14 +87,7 @@ public class Car implements Comparable<Car> {
         cars[3] = new Car("Hatchback", 2011, 2.6);
         carsList.addAll(Arrays.asList(cars));
 
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter the year of production: ");
-        int yearOfProduction = sc.nextInt();
-        while (yearOfProduction > getMaxYear(cars) || yearOfProduction < getMinYear(cars)) {
-            System.out.print("Invalid year of production. Try again: ");
-            yearOfProduction = sc.nextInt();
-            sc.nextLine();
-        }
+        int yearOfProduction = inputYearOfProduction(cars);
         System.out.println("=======================================");
         List<Car> carsSelected = getCarByYear(cars, yearOfProduction);
         if (!carsSelected.isEmpty()) {

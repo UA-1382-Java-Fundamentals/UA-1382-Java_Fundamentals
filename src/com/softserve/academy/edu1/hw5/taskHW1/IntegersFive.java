@@ -47,15 +47,20 @@ public class IntegersFive {
         }
     }
 
-    public static void main(String[] args) {
-        int count = 5;
-        int[] numbers = new int[count];
+    private static int[] getNumbers(int count) {
         Scanner sc = new Scanner(System.in);
+        int[] numbers = new int[count];
         for (int i = 0; i < numbers.length; i++) {
             System.out.print("Enter an integer #" + (i+1) + ": ");
             numbers[i] = sc.nextInt();
             sc.nextLine();
         }
+        return numbers;
+    }
+
+    public static void main(String[] args) {
+
+        int[] numbers = getNumbers(5);
 
         int secondPositiveIndex = getSecondPositiveIndex(numbers);
         int[] minNumberInstance = getMinNumberInstance(numbers);
