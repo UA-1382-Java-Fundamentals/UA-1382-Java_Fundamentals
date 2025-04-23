@@ -38,16 +38,16 @@ public class Employee {
         this.hours = hours;
     }
 
-    double getSalary() {
+    public double getSalary() {
         return rate * hours;
+    }
+
+    public double getBonuses() {
+        return getSalary() * 0.1;
     }
 
     static void toString(double value) {
         System.out.println("Total salary: " + value);
-    }
-
-    double getBonuses() {
-        return getSalary() * 0.1;
     }
 
 }

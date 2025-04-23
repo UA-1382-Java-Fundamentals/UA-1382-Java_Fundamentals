@@ -3,16 +3,12 @@ Write a Java console application with methods that accept two numbers as argumen
 have the following names:
 
 • getTotal - returns their sum;
-• getAverage - returns their average;
-• (*) static getNumber(String prompt) - allows input of numbers using Scanner with
-messages and return number
+• getAverage Write Java console application with method to calculate the area of a triangle. Example of output:
 
-Call these methods from the main() method and print the results. For example:
-
-Enter the first number: 2
-Enter the second number: 5
-The sum of 2.0 and 5.0: 7.0
-The average of 2.0 and 5.0: 3.5
+Input Side 1: 10.0
+Input Side 2: 12.0
+Input Side 3: 15.0
+The area of the triangle is 59.81
  */
 
 package com.softserve.academy.hw3_t1;

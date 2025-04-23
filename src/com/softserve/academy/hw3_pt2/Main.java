@@ -4,11 +4,14 @@ Create class called Employee that should consist of:
 • a static field called totalSum
 • properties to access these fields;
 • a default constructor and two constructors with parameters;
+
 • Methods:
 o getSalary() - to calculate the salary of an employee (formula rate * hours);
 o toString() - to output information about the employee;
 o getBonuses() – to calculate 10% from salary.
+
 In the main() method create 3 objects of type Employee, input information about them.
+
 Display the total salary of all employees to the console.
  */
 

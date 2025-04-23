@@ -31,13 +31,13 @@ public class Triangle {
         this.side3 = side3;
     }
 
-    double getSide(String message) {
+    public double getSide(String message) {
         System.out.println(message);
         Scanner sc = new Scanner(System.in);
         return sc.nextDouble();
     }
 
-    double calculateArea() {
+    public double calculateArea() {
         double p = (side1 + side2 + side3) / 2;
         return Math.sqrt(p * (p - side1) * (p - side2) * (p - side3));
     }
