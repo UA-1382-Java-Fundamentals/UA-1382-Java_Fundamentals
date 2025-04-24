@@ -1,37 +1,31 @@
 package softserve.academy.edu1.hw5.taskHW1;
 
 import java.time.Month;
-import java.util.*;
+import java.util.Scanner;
 
 public class DaysInMonth {
-    private static boolean isLeapYear() {
-        Scanner sc = new Scanner(System.in);
-        boolean isLeapYear;
-        System.out.print("Is it a leap year? ");
-        String answer = sc.nextLine();
+    static final Scanner SCANNER = new Scanner(System.in);
+
+    public static boolean isLeapYear() {
+        System.out.print("Is it a leap year? (y/n) ");
+        String answer = SCANNER.nextLine();
+        SCANNER.close();
         answer = answer.toLowerCase();
-        isLeapYear = switch (answer) {
-            case "yes" -> true;
-            case "no" -> false;
-            default -> false;
-        };
-        sc.close();
-        return isLeapYear;
+        return answer.equals("y");
     }
 
-    private static int getMonthIndex() {
-        Scanner sc = new Scanner(System.in);
+    public static int inputMonthNumber() {
         System.out.print("Enter the month number: ");
-        int monthIndex = sc.nextInt();
-        while (monthIndex < 1 || monthIndex > 12) {
-            System.out.print("Invalid month number, try again: ");
-            monthIndex = sc.nextInt();
-        }
-        sc.close();
-        return monthIndex;
+        return SCANNER.nextInt();
     }
 
-    private static String[] fillMonthsArray() {
+    public static void isIndexValid(int monthIndex) {
+        if (monthIndex < 1 || monthIndex > 12) {
+            throw new IllegalArgumentException("Month index must be between 1 and 12");
+        }
+    }
+
+    public static String[] fillMonthsArray() {
         String[] monthsArray = new String[12];
         for (int i = 0; i < monthsArray.length; i++) {
             Month month = Month.of(i+1);
@@ -43,13 +37,15 @@ public class DaysInMonth {
     public static void main(String[] args) {
 
         String[] monthsArray = fillMonthsArray();
-        int monthIndex = getMonthIndex();
+        int monthIndex = inputMonthNumber();
+        isIndexValid(monthIndex);
         boolean isLeapYear = false;
         if (monthIndex == 2) {
             isLeapYear = isLeapYear();
         }
         System.out.println("You have chosen " + monthsArray[monthIndex-1]);
         System.out.println("It has maximum of " + Month.of(monthIndex).length(isLeapYear) + " days.");
+        SCANNER.close();
     }
 
 }

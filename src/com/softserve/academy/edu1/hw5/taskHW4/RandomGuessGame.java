@@ -4,19 +4,22 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class RandomGuessGame {
-    private static String guessCheck(int userGuess, int guessNumber) {
+    static final Scanner SCANNER = new Scanner(System.in);
+
+    public static String guessCheck(int userGuess, int guessNumber) {
         if (userGuess > guessNumber) {
             return "Your guess is too high! Try again";
-        } else {
+        } else if (userGuess < guessNumber) {
             return "Your guess is too low! Try again";
+        } else {
+            return "Your guess is correct!";
         }
     }
 
-    private static int getUserGuess(String prompt) {
-        Scanner sc = new Scanner(System.in);
+    public static int inputUserGuess(String prompt) {
         System.out.print(prompt);
-        int userGuess = sc.nextInt();
-        sc.nextLine();
+        int userGuess = SCANNER.nextInt();
+        SCANNER.nextLine();
         return userGuess;
     }
 
@@ -24,12 +27,14 @@ public class RandomGuessGame {
         int boundary = 10;
         Random rand = new Random();
         int guessNumber = rand.nextInt(boundary);
+        int userGuess = inputUserGuess("Guess what the generated number (boundary is " + boundary + "): ");
 
-        int userGuess = getUserGuess("Guess what the generated number (boundary is " + boundary + "): ");
-        do {
+        while (userGuess != guessNumber) {
             System.out.println(guessCheck(userGuess, guessNumber));
-            userGuess = getUserGuess("Type your next guess: ");
-        } while (guessNumber != userGuess);
-        System.out.println("You guessed correctly!");
+            userGuess = inputUserGuess("Type your next guess: ");
+        }
+
+        System.out.println(guessCheck(userGuess, guessNumber));
+        SCANNER.close();
     }
 }

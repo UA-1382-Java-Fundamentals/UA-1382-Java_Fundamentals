@@ -3,6 +3,8 @@ package softserve.academy.edu1.hw5.taskHW3;
 import java.util.*;
 
 public class Car implements Comparable<Car> {
+    static final Scanner SCANNER = new Scanner(System.in);
+
     private String type;
     private int yearOfProduction;
     private double engineCapacity;
@@ -11,6 +13,18 @@ public class Car implements Comparable<Car> {
         this.type = type;
         this.yearOfProduction = yearOfProduction;
         this.engineCapacity = engineCapacity;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getYearOfProduction() {
+        return yearOfProduction;
+    }
+
+    public double getEngineCapacity() {
+        return engineCapacity;
     }
 
     public static int getMaxYear (Car[] cars) {
@@ -39,37 +53,20 @@ public class Car implements Comparable<Car> {
         return carsSelected;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public int getYearOfProduction() {
-        return yearOfProduction;
-    }
-
-    public double getEngineCapacity() {
-        return engineCapacity;
-    }
-
-    private static int inputYearOfProduction(Car[] cars) {
-        Scanner sc = new Scanner(System.in);
+    public static int inputYearOfProduction(Car[] cars) {
         System.out.print("Enter the year of production: ");
-        int yearOfProduction = sc.nextInt();
+        int yearOfProduction = SCANNER.nextInt();
         while (yearOfProduction > getMaxYear(cars) || yearOfProduction < getMinYear(cars)) {
             System.out.print("Invalid year of production. Try again: ");
-            yearOfProduction = sc.nextInt();
-            sc.nextLine();
+            yearOfProduction = SCANNER.nextInt();
+            SCANNER.nextLine();
         }
         return yearOfProduction;
     }
 
     @Override
     public String toString() {
-        return "Car{" +
-                "type='" + type + '\'' +
-                ", yearOfProduction=" + yearOfProduction +
-                ", engineCapacity=" + engineCapacity +
-                '}';
+        return type + " - " + yearOfProduction + " - " + engineCapacity;
     }
 
     @Override
@@ -93,7 +90,7 @@ public class Car implements Comparable<Car> {
         if (!carsSelected.isEmpty()) {
             System.out.println("Here are the cars produced in " + yearOfProduction);
             for (Car car : carsSelected) {
-                System.out.println(car.getType() + " - " + car.getYearOfProduction() + " - " + car.getEngineCapacity());
+                System.out.println(car.toString());
             }
         }
         else {
@@ -102,14 +99,15 @@ public class Car implements Comparable<Car> {
         System.out.println("=======================================");
         System.out.println("Initial unsorted array follows:");
         for (Car car : cars) {
-            System.out.println(car.getType() + " - " + car.getYearOfProduction() + " - " + car.getEngineCapacity());
+            System.out.println(car.toString());
         }
         System.out.println("=======================================");
         System.out.println("Array that was sorted by year of production (asc) follows:");
         Collections.sort(carsList);
         for (Car car : carsList) {
-            System.out.println(car.getType() + " - " + car.getYearOfProduction() + " - " + car.getEngineCapacity());
+            System.out.println(car.toString());
         }
         System.out.println("=======================================");
+        SCANNER.close();
     }
 }

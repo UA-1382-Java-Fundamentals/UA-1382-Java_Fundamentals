@@ -3,7 +3,9 @@ package softserve.academy.edu1.hw5.taskHW1;
 import java.util.Scanner;
 
 public class IntegersFive {
-    static int getSecondPositiveIndex (int[] numbers) {
+    static final Scanner SCANNER = new Scanner(System.in);
+
+    public static int getSecondPositiveIndex (int[] numbers) {
         int secondPositiveIndex = 0;
         int j = 1;
         for (int i = 0; i < numbers.length; i++) {
@@ -19,7 +21,7 @@ public class IntegersFive {
         return secondPositiveIndex;
     }
 
-    static int[] getMinNumberInstance(int[] numbers) {
+    public static int[] getMinNumberInstance(int[] numbers) {
         int minNumber = Integer.MAX_VALUE;
         int minNumberIndex = 0;
         for (int i = 0; i < numbers.length; i++) {
@@ -31,7 +33,7 @@ public class IntegersFive {
         return new int[]{minNumber, minNumberIndex};
     }
 
-    static int getEvenProduct (int[] numbers) {
+    public static int getEvenProduct (int[] numbers) {
         int product = 1;
         int evenCounter = 0;
         for (int number : numbers) {
@@ -47,20 +49,19 @@ public class IntegersFive {
         }
     }
 
-    private static int[] getNumbers(int count) {
-        Scanner sc = new Scanner(System.in);
+    public static int[] inputNumbers(int count) {
         int[] numbers = new int[count];
         for (int i = 0; i < numbers.length; i++) {
             System.out.print("Enter an integer #" + (i+1) + ": ");
-            numbers[i] = sc.nextInt();
-            sc.nextLine();
+            numbers[i] = SCANNER.nextInt();
+            SCANNER.nextLine();
         }
         return numbers;
     }
 
     public static void main(String[] args) {
-
-        int[] numbers = getNumbers(5);
+        int count = 5;
+        int[] numbers = inputNumbers(count);
 
         int secondPositiveIndex = getSecondPositiveIndex(numbers);
         int[] minNumberInstance = getMinNumberInstance(numbers);
@@ -74,5 +75,6 @@ public class IntegersFive {
         else {
             System.out.println("There are no even numbers in the array");
         }
+        SCANNER.close();
     }
 }
