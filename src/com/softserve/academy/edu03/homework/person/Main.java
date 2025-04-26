@@ -9,7 +9,7 @@ public class Main {
         Person p1 = new Person();
         p1.input(scan);
 
-        Person p2 = new Person("Katrin", "West");
+        Person p2 = new Person("Katrin", "Westy");
         p2.setBirthYear(2002);
 
         Person p3 = new Person();
