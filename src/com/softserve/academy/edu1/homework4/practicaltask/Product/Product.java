@@ -1,4 +1,4 @@
-package homework4.practicaltask.Product;
+package com.softserve.academy.edu1.homework4.practicaltask.Product;
 
 //4.* Create class called Product that has the following fields:
 //String name, double price and int quantity.

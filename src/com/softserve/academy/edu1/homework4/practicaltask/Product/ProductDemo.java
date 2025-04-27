@@ -1,4 +1,4 @@
-package homework4.practicaltask.Product;
+package com.softserve.academy.edu1.homework4.practicaltask.Product;
 
 public class ProductDemo {
     public static void main(String[] args) {
