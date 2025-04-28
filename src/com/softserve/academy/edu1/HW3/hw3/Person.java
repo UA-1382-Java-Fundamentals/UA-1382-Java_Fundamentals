@@ -31,9 +31,7 @@ public class Person {
     public String output() {
         return firstName + " " + lastName + " " + birthYear + " age:" + getAge();
     }
-
     public long getAge() {
-        return 2025 - birthYear;
     }
 
     public void changeName() {
@@ -49,7 +47,6 @@ public class Person {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -61,7 +58,6 @@ public class Person {
     public String getFirstName() {
         return firstName;
     }
-
     public String getLastName() {
         return lastName;
     }
