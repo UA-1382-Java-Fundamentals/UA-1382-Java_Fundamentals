@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class IntegersFive {
     static final Scanner SCANNER = new Scanner(System.in);
 
-    public static int getSecondPositiveIndex (int[] numbers) {
+    public static int getSecondPositiveIndex(int[] numbers) {
         int secondPositiveIndex = 0;
         int j = 1;
         for (int i = 0; i < numbers.length; i++) {
@@ -33,7 +33,7 @@ public class IntegersFive {
         return new int[]{minNumber, minNumberIndex};
     }
 
-    public static int getEvenProduct (int[] numbers) {
+    public static int getEvenProduct(int[] numbers) {
         int product = 1;
         int evenCounter = 0;
         for (int number : numbers) {
@@ -44,15 +44,14 @@ public class IntegersFive {
         }
         if (evenCounter > 0) {
             return product;
-        } else {
-            return 0;
         }
+        return 0;
     }
 
     public static int[] inputNumbers(int count) {
         int[] numbers = new int[count];
         for (int i = 0; i < numbers.length; i++) {
-            System.out.print("Enter an integer #" + (i+1) + ": ");
+            System.out.print("Enter an integer #" + (i + 1) + ": ");
             numbers[i] = SCANNER.nextInt();
             SCANNER.nextLine();
         }
@@ -71,8 +70,7 @@ public class IntegersFive {
         System.out.println("The least number in array is " + minNumberInstance[0] + " and it's index is " + minNumberInstance[1]);
         if (evenProduct > 0) {
             System.out.println("The product of all even numbers is: " + evenProduct);
-        }
-        else {
+        } else {
             System.out.println("There are no even numbers in the array");
         }
         SCANNER.close();

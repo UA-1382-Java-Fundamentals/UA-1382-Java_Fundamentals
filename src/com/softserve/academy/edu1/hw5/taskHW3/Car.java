@@ -2,32 +2,10 @@ package softserve.academy.edu1.hw5.taskHW3;
 
 import java.util.*;
 
-public class Car implements Comparable<Car> {
+class CarService {
     static final Scanner SCANNER = new Scanner(System.in);
 
-    private String type;
-    private int yearOfProduction;
-    private double engineCapacity;
-
-    public Car(String type, int yearOfProduction, double engineCapacity) {
-        this.type = type;
-        this.yearOfProduction = yearOfProduction;
-        this.engineCapacity = engineCapacity;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public int getYearOfProduction() {
-        return yearOfProduction;
-    }
-
-    public double getEngineCapacity() {
-        return engineCapacity;
-    }
-
-    public static int getMaxYear (Car[] cars) {
+    public int getMaxYear (Car[] cars) {
         int maxYear = Integer.MIN_VALUE;
         for (Car car : cars) {
             maxYear = Math.max(car.yearOfProduction, maxYear);
@@ -35,7 +13,7 @@ public class Car implements Comparable<Car> {
         return maxYear;
     }
 
-    public static int getMinYear (Car[] cars) {
+    public int getMinYear (Car[] cars) {
         int minYear = Integer.MAX_VALUE;
         for (Car car : cars) {
             minYear = Math.min(car.yearOfProduction, minYear);
@@ -43,7 +21,7 @@ public class Car implements Comparable<Car> {
         return minYear;
     }
 
-    public static List<Car> getCarByYear (Car[] cars, int year) {
+    public List<Car> getCarByYear (Car[] cars, int year) {
         List<Car> carsSelected = new ArrayList<>();
         for (Car car : cars) {
             if (car.yearOfProduction == year) {
@@ -53,7 +31,7 @@ public class Car implements Comparable<Car> {
         return carsSelected;
     }
 
-    public static int inputYearOfProduction(Car[] cars) {
+    public int inputYearOfProduction(Car[] cars) {
         System.out.print("Enter the year of production: ");
         int yearOfProduction = SCANNER.nextInt();
         while (yearOfProduction > getMaxYear(cars) || yearOfProduction < getMinYear(cars)) {
@@ -63,15 +41,20 @@ public class Car implements Comparable<Car> {
         }
         return yearOfProduction;
     }
+}
 
-    @Override
-    public String toString() {
-        return type + " - " + yearOfProduction + " - " + engineCapacity;
-    }
+public class Car implements Comparable<Car> {
+    static final Scanner SCANNER = new Scanner(System.in);
+    static final CarService SERVICE = new CarService();
 
-    @Override
-    public int compareTo(Car otherCar) {
-        return Integer.compare(getYearOfProduction(), otherCar.getYearOfProduction());
+    protected String type;
+    protected int yearOfProduction;
+    protected double engineCapacity;
+
+    public Car(String type, int yearOfProduction, double engineCapacity) {
+        this.type = type;
+        this.yearOfProduction = yearOfProduction;
+        this.engineCapacity = engineCapacity;
     }
 
     public static void main(String[] args) {
@@ -84,9 +67,9 @@ public class Car implements Comparable<Car> {
         cars[3] = new Car("Hatchback", 2011, 2.6);
         carsList.addAll(Arrays.asList(cars));
 
-        int yearOfProduction = inputYearOfProduction(cars);
+        int yearOfProduction = SERVICE.inputYearOfProduction(cars);
         System.out.println("=======================================");
-        List<Car> carsSelected = getCarByYear(cars, yearOfProduction);
+        List<Car> carsSelected = SERVICE.getCarByYear(cars, yearOfProduction);
         if (!carsSelected.isEmpty()) {
             System.out.println("Here are the cars produced in " + yearOfProduction);
             for (Car car : carsSelected) {
@@ -110,4 +93,29 @@ public class Car implements Comparable<Car> {
         System.out.println("=======================================");
         SCANNER.close();
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getYearOfProduction() {
+        return yearOfProduction;
+    }
+
+    public double getEngineCapacity() {
+        return engineCapacity;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return type + " - " + yearOfProduction + " - " + engineCapacity;
+    }
+
+    @Override
+    public int compareTo(Car otherCar) {
+        return Integer.compare(getYearOfProduction(), otherCar.getYearOfProduction());
+    }
+
 }

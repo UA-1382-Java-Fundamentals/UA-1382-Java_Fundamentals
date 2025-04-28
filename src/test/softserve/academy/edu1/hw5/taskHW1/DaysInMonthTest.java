@@ -3,6 +3,8 @@ package softserve.academy.edu1.hw5.taskHW1;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.fail;
+
 class DaysInMonthTest {
     @Test
     void testFillMonthsArray() {
@@ -23,9 +25,12 @@ class DaysInMonthTest {
     }
 
     @Test
-    void testIsIndexValid() {
-        int monthIndex = 1;
-        DaysInMonth.isIndexValid(monthIndex);
+    void testValidIndex() {
+        int monthIndex = 6;
+        try {DaysInMonth.isIndexValid(monthIndex);}
+        catch (IllegalArgumentException e) {
+            fail ("Valid month " + monthIndex + " should not throw exception");
+        }
     }
 
     @Test
