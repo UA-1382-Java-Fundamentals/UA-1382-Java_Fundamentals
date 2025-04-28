@@ -17,27 +17,27 @@ public class Person {
         System.out.println(output());
     }
 
-   public void input() {
-       System.out.println("Enter your first name: ");
-       setFirstName( input.nextLine());
+    public void input() {
+        System.out.println("Enter your first name: ");
+        setFirstName(input.nextLine());
 
-       System.out.println("Enter your last name: ");
-       setLastName(input.nextLine());
-       System.out.print("When did you born?");
-       setBirthYear( input.nextLong());
-       input.nextLine();
-   }
-
-
-
-    public String output(){
-        return firstName + " " + lastName+ " " + birthYear+" age:"+ getAge();
-    }
-    public long  getAge(){
-        return 2024-birthYear;
+        System.out.println("Enter your last name: ");
+        setLastName(input.nextLine());
+        System.out.print("When did you born?");
+        setBirthYear(input.nextLong());
+        input.nextLine();
     }
 
-    public void changeName(){
+
+    public String output() {
+        return firstName + " " + lastName + " " + birthYear + " age:" + getAge();
+    }
+
+    public long getAge() {
+        return 2025 - birthYear;
+    }
+
+    public void changeName() {
         System.out.println("Enter your NEW first name: ");
         String newFirstName = input.nextLine();
         setFirstName(newFirstName);
@@ -50,6 +50,7 @@ public class Person {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -61,6 +62,7 @@ public class Person {
     public String getFirstName() {
         return firstName;
     }
+
     public String getLastName() {
         return lastName;
     }
