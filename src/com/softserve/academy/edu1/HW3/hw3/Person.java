@@ -28,7 +28,6 @@ public class Person {
         input.nextLine();
     }
 
-
     public String output() {
         return firstName + " " + lastName + " " + birthYear + " age:" + getAge();
     }

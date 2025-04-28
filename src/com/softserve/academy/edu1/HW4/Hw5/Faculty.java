@@ -20,7 +20,6 @@ public class Faculty {
             this.academic_period = academic_period;
         }
 
-
         public String getAcademic_period() {
             return academic_period;
         }
