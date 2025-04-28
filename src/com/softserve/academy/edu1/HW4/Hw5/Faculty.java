@@ -35,6 +35,7 @@ public class Faculty {
         System.out.println(toString());
     }
 
+    
     public String toString() {
         return name + " " + numberOfStudents + " " + season.getSeason()+" "+ season.getAcademic_period();
     }
