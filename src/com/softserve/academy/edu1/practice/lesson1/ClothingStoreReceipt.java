@@ -1,4 +1,4 @@
-package practice.class1;
+package com.softserve.academy.edu1.practice.lesson1;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package homework.class1;
+package com.softserve.academy.edu1.homework.lesson1;
 
 import java.util.Scanner;
 
@@ -8,6 +8,7 @@ public class PhoneCallCostCalculator {
 
         double c1, c2, c3;
         double t1, t2, t3;
+
 
         System.out.print("Введіть вартість за 1 хвилину першого дзвінка: ");
         c1 = sc.nextDouble();
