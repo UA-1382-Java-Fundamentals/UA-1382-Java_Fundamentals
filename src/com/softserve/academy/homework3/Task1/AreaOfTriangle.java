@@ -2,7 +2,7 @@ package softserve.academy.homework3.Task1;
 
 import java.util.Scanner;
 
-public class areaOfTriangle {
+public class AreaOfTriangle {
     public static void main(String[] args) {
         // 10, 12, 15
         Scanner scanner = new Scanner(System.in);
