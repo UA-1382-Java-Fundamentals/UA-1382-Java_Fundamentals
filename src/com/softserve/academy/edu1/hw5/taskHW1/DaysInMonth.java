@@ -6,20 +6,17 @@ import java.util.Scanner;
 public class DaysInMonth {
     static final Scanner SCANNER = new Scanner(System.in);
 
-    public static boolean isLeapYear() {
-        System.out.print("Is it a leap year? (y/n) ");
-        String answer = SCANNER.nextLine();
-        SCANNER.close();
+    public static boolean isLeapYear(String answer) {
         answer = answer.toLowerCase();
         return answer.equals("y");
     }
 
-    public static int inputMonthNumber() {
-        System.out.print("Enter the month number: ");
-        return SCANNER.nextInt();
+    public static String inputUserData(String message) {
+        System.out.print(message);
+        return SCANNER.nextLine();
     }
 
-    public static void isIndexValid(int monthIndex) {
+    public static void checkValidIndex(int monthIndex) {
         if (monthIndex < 1 || monthIndex > 12) {
             throw new IllegalArgumentException("Month index must be between 1 and 12");
         }
@@ -37,11 +34,12 @@ public class DaysInMonth {
     public static void main(String[] args) {
 
         String[] monthsArray = fillMonthsArray();
-        int monthIndex = inputMonthNumber();
-        isIndexValid(monthIndex);
+        int monthIndex = Integer.parseInt(inputUserData("Enter the month number: "));
+        checkValidIndex(monthIndex);
         boolean isLeapYear = false;
         if (monthIndex == 2) {
-            isLeapYear = isLeapYear();
+            String answer = inputUserData("Is it a leap year? (y/n) :");
+            isLeapYear = isLeapYear(answer);
         }
         System.out.println("You have chosen " + monthsArray[monthIndex-1]);
         System.out.println("It has maximum of " + Month.of(monthIndex).length(isLeapYear) + " days.");

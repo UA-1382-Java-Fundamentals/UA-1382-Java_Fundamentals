@@ -27,7 +27,7 @@ class DaysInMonthTest {
     @Test
     void testValidIndex() {
         int monthIndex = 6;
-        try {DaysInMonth.isIndexValid(monthIndex);}
+        try {DaysInMonth.checkValidIndex(monthIndex);}
         catch (IllegalArgumentException e) {
             fail ("Valid month " + monthIndex + " should not throw exception");
         }
@@ -37,7 +37,7 @@ class DaysInMonthTest {
     void testIsIndexInvalid() {
         int monthIndex = 15;
         IllegalArgumentException thrown =
-                Assertions.assertThrows(IllegalArgumentException.class,() -> {DaysInMonth.isIndexValid(monthIndex);});
+                Assertions.assertThrows(IllegalArgumentException.class,() -> {DaysInMonth.checkValidIndex(monthIndex);});
 
     }
 }
