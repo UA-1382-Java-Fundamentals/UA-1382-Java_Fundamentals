@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        Employee[] employees = {
+        Payment[] employees = {
                 new ContractEmployee("Mark-231", 1500, "584678922"),
                 new ContractEmployee("Jane-246", 900, "563421889"),
                 new ContractEmployee("Robin-190", 1300, "547962312"),
@@ -14,12 +14,12 @@ public class Main {
                 new SalariedEmployee("Richard-217", 44, 25, "256987965"),
         };
         System.out.println("========== Raw array ============");
-        for (Employee employee : employees) {
+        for (Payment employee : employees) {
             System.out.println(employee.toString());
         }
         System.out.println("============ Sorted =============");
         Arrays.sort(employees, new WageComparator());
-        for (Employee employee : employees) {
+        for (Payment employee : employees) {
             System.out.println(employee.toString());
         }
     }
