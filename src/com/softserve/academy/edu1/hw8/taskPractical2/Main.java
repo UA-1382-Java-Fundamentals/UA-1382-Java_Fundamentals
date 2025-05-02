@@ -70,7 +70,7 @@ public class Main {
                 String type = SCAN.nextLine();
                 return new Plant(size, color, type);
             } catch (ColorException | TypeException e) {
-                System.out.println(e.getMessage());;
+                System.out.println(e.getMessage());
             } catch (NumberFormatException e) {
                 System.out.println("Size should be an integer!");
             } catch (SizeTooSmallException e) {

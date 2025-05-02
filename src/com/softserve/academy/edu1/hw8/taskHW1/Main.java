@@ -39,7 +39,7 @@ public class Main {
                 System.out.print(message);
                 return Double.parseDouble(SCANNER.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Enter a valid number! Use \'.\' to separate decimal part!");
+                System.out.println("Enter a valid number! Use '.' to separate decimal part!");
             }
         }
     }
