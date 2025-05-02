@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Person {
+    static final Scanner SCANNER = new Scanner(System.in);
+    static final LocalDate LOCAL_DATE = LocalDate.now();
+
     private String firstName;
     private String lastName;
     private int birthYear;
@@ -21,9 +24,7 @@ public class Person {
     }
 
     public int getAge() {
-        LocalDate ld = LocalDate.now();
-        int currentYear = ld.getYear();
-        return currentYear - birthYear;
+        return LOCAL_DATE.getYear() - birthYear;
     }
 
     public String getFirstName() {
@@ -38,36 +39,16 @@ public class Person {
         return birthYear;
     }
 
-    public void setBirthYear(int birthYear) {
-        LocalDate ld = LocalDate.now();
-        if (birthYear < 1900 || birthYear > ld.getYear()) {
-            Scanner sc = new Scanner(System.in);
-            while (birthYear < 1900 || birthYear > ld.getYear()) {
-                System.out.print("Invalid birth year, try again: ");
-                birthYear = sc.nextInt();
-            }
-        } else {
-            this.birthYear = birthYear;
+    public void checkBirthYear(int birthYear) {
+        if (birthYear < 1900 || birthYear > LOCAL_DATE.getYear()) {
+            throw new IllegalArgumentException("Invalid birth year!");
         }
     }
 
-    public void input() {
-        Scanner sc = new Scanner(System.in);
-        LocalDate ld = LocalDate.now();
-        System.out.print("Enter person's first name: ");
-        firstName = sc.nextLine();
-        System.out.print("Enter person's last name: ");
-        lastName = sc.nextLine();
-        System.out.print("Enter person's year of birth: ");
-        birthYear = sc.nextInt();
-        while (birthYear < 1900 || birthYear > ld.getYear()) {
-            System.out.print("Invalid birth year, try again: ");
-            birthYear = sc.nextInt();
+    public static void checkEmptyLine(String line) {
+        if (line.isEmpty()) {
+            throw new IllegalArgumentException("Empty line! Enter a valid name!");
         }
-    }
-
-    public String output() {
-        return String.format("%s %s born in %d", firstName, lastName, birthYear);
     }
 
     public void setName(String... args) {
@@ -75,5 +56,37 @@ public class Person {
         if (args.length > 1) {
             this.lastName = args[1];
         }
+    }
+
+    public void setBirthYear(int birthYear) {
+        this.birthYear = birthYear;
+    }
+
+    public static String inputFromConsole(String prompt) {
+        System.out.print(prompt);
+        return SCANNER.nextLine();
+    }
+
+    public void inputNewData() {
+        firstName = inputFromConsole("Enter person's first name: ");
+        lastName = inputFromConsole("Enter person's last name: ");
+        if (firstName.isEmpty() || lastName.isEmpty()) {
+            throw new IllegalArgumentException("Person's name cannot be empty!");
+        }
+        try {
+            birthYear = Integer.parseInt(inputFromConsole("Enter person's birth year: "));
+            checkBirthYear(birthYear);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Year must be an integer!");
+        }
+    }
+
+    public String output() {
+        return String.format("%s %s born in %d", firstName, lastName, birthYear);
+    }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName + " (" + birthYear + ")";
     }
 }
