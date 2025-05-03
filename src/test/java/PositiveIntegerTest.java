@@ -10,7 +10,7 @@ class PositiveIntegerTest {
     @Test
     void isPrimeNumber() {
 
-    assertTrue(myNumb.isPrimeNumber(1));
+    assertTrue(myNumb.isPrimeNumber(17));
 
     assertFalse(myNumb.isPrimeNumber(10));
 

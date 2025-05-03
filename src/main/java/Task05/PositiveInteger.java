@@ -6,6 +6,9 @@ public class PositiveInteger {
 
     public boolean isPrimeNumber(int numberToCheck) {
         int remainder;
+        if(numberToCheck == 0 || numberToCheck == 1){
+            return false;
+        }
         for (int i = 2; i <= numberToCheck / 2; i++) {
             remainder = numberToCheck % i;
             if (remainder == 0) {
