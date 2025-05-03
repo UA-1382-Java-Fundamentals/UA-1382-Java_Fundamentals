@@ -11,67 +11,81 @@ package softserve.academy.edu1.hw4.taskHW4;
 
 import java.util.Scanner;
 
-enum Seasons {
-    SPRING ("Spring", "Second semester", 0.8),
-    SUMMER ("Summer", "Vacation", 0.05),
-    AUTUMN ("Autumn", "First semester", 0.9),
-    WINTER ("Winter", "Exams", 0.95);
+public class FacultyStudents {
+    static final Scanner SCANNER = new Scanner(System.in);
 
-    private final String name;
-    private final String events;
-    private final double attendanceFactor;
+    public static void main(String[] args) {
+        int maxStudents = 0;
+        while (true) {
+            try {
+                maxStudents = setMaxStudents("Enter the maximum number of students: ");
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
-    private Seasons (String name, String events, double attendanceFactor) {
-        this.name = name;
-        this.events = events;
-        this.attendanceFactor = attendanceFactor;
+        System.out.println("Let's see how many students attended classes during a particular season.");
+
+        String seasonInput = null;
+        Seasons season = null;
+        while (true) {
+            while (true) {
+                try {
+                    seasonInput = inputSeason("What season do you have in mind? :");
+                    break;
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            try {
+                season = getSeason(seasonInput);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        System.out.printf(
+                "During %s, the %s takes place. %.0f students attended the faculty at that time.",
+                season.getName().toLowerCase(),
+                season.getEvents().toLowerCase(),
+                (maxStudents * season.getAttendanceFactor())
+        );
     }
 
-    public static Seasons getSeason (String name) {
-        for (Seasons seasonInstance : values()) {
-            if (seasonInstance.name.equalsIgnoreCase(name)) {
+    public static Seasons getSeason(String name) {
+        for (Seasons seasonInstance : Seasons.values()) {
+            if (seasonInstance.getName().equalsIgnoreCase(name)) {
                 return seasonInstance;
             }
         }
-        return null;
+        throw new IllegalArgumentException(
+                String.format("No season found with name '%s'", name)
+        );
     }
 
-    public String getEvents() {
-        return events;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getAttendanceFactor() {
-        return attendanceFactor;
-    }
-}
-
-public class FacultyStudents {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the maximum number of students: ");
-        int maxStudents = sc.nextInt();
-        while (maxStudents <= 0) {
-            System.out.println("Enter a positive number: ");
-            maxStudents = sc.nextInt();
+    private static String inputSeason(String prompt) {
+        System.out.print(prompt);
+        String output = SCANNER.nextLine();
+        if (output.isEmpty()) {
+            throw new IllegalArgumentException("The season cannot be empty!");
         }
-        sc.nextLine();
+        return output;
+    }
 
-        System.out.println("Let's see how many students attended classes during a particular season. " +
-                "\nWhat season do you have in mind?");
-        String seasonInput = sc.nextLine();
-        Seasons season = Seasons.getSeason(seasonInput);
-        while (season == null) {
-            System.out.println("Incorrect season, try again");
-            seasonInput = sc.nextLine();
-            season = Seasons.getSeason(seasonInput);
+    private static int setMaxStudents(String prompt) {
+        while (true) {
+            try {
+                System.out.print(prompt);
+                int maxStudents = Integer.parseInt(SCANNER.nextLine());
+                if (maxStudents <= 0) {
+                    throw new IllegalArgumentException("Number of students must be greater than zero!");
+                }
+                return maxStudents;
+            } catch (NumberFormatException e) {
+                throw new NumberFormatException("Enter a number!");
+            }
         }
-
-        String seasonMessage = String.format("It is %s.\nThe time of %s has come.\n%.0f students attended faculty " +
-                "during that season.", season.getName(), season.getEvents(), (maxStudents * season.getAttendanceFactor()));
-        System.out.println(seasonMessage);
     }
 }

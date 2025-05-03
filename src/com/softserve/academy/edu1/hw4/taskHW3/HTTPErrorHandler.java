@@ -2,54 +2,37 @@ package softserve.academy.edu1.hw4.taskHW3;
 
 import java.util.Scanner;
 
-enum HTTPError {
-    BADREQUEST(400, "Bad Request"),
-    UNAUTHORIZED(401, "Unauthorized"),
-    PAYMENTREQUIRED(402, "Payment Required"),
-    FORBIDDEN(403,"Forbidden"),
-    NOTFOUND(404,"Not Found"),
-    METHODNOTALLOWED(405, "Method Not Allowed");
+public class HTTPErrorHandler {
+    static final Scanner SCANNER = new Scanner(System.in);
 
-    private final int code;
-    private final String label;
-
-    private HTTPError(int code, String label) {
-        this.code = code;
-        this.label = label;
-    }
-
-    public static HTTPError getErrorCode(int inputCode) {
-        for (HTTPError errorInstance : values()) {
-            if (errorInstance.code == inputCode) {
-                return errorInstance;
+    public static void main(String[] args) {
+        int code = 0;
+        while (true) {
+            try {
+                code = inputCode("Enter HTTP code: ");
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid number!");
             }
         }
-        return null;
+
+        HTTPError httpError = null;
+        try {
+            httpError = HTTPError.getErrorCode(code);
+            System.out.printf(httpError.toString());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    public String getLabel() {
-        return label;
-    }
-}
-
-public class HTTPErrorHandler {
-    public static void main(String[] args) {
-        HTTPError httpError;
-        String result;
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter HTTP code: ");
-        int code = sc.nextInt();
-        sc.nextLine();
-
-        httpError = HTTPError.getErrorCode(code);
-
-        if (httpError != null) {
-            result = String.format("Error code %d corresponds to \"%s\" label.", code, httpError.getLabel());
+    static int inputCode(String prompt) {
+        while (true) {
+            try {
+                System.out.print(prompt);
+                return Integer.parseInt(SCANNER.nextLine());
+            } catch (NumberFormatException e) {
+                throw new NumberFormatException("Enter a proper integer!");
+            }
         }
-        else {
-            result = "Code out of bounds, try googling.";
-        }
-        System.out.println(result);
-
     }
 }
