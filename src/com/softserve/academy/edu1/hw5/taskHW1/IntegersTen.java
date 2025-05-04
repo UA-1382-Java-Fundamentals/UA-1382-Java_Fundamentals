@@ -6,6 +6,31 @@ public class IntegersTen {
 
     static final Scanner SCANNER = new Scanner(System.in);
 
+    public static void main(String[] args) {
+        int count = 10;
+        int[] numbers;
+        while (true) {
+            try {
+                numbers = inputNumbers(count);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        int sumFirstPositive = getSumFirstPositive(numbers);
+
+        System.out.println("=============================================");
+        if (sumFirstPositive != -1) {
+            System.out.println("First 5 integers are positive numbers. Their sum is: " + sumFirstPositive);
+        } else {
+            int productOfLast = getProductOfLast(numbers);
+            System.out.println("There is a negative integer in the first 5 numbers.");
+            System.out.println("The product of the last 5 indices of array is: " + productOfLast);
+        }
+        SCANNER.close();
+    }
+
     public static int getSumFirstPositive (int[] numbers) {
         int sumFirstPositive = 0;
         int halfCount = numbers.length / 2;
@@ -32,27 +57,13 @@ public class IntegersTen {
     public static int[] inputNumbers(int count) {
         int[] numbers = new int[count];
         for (int i = 0; i < numbers.length; i++) {
-            System.out.print("Enter an integer #" + (i+1) + ": ");
-            numbers[i] = SCANNER.nextInt();
-            SCANNER.nextLine();
+            try {
+                System.out.print("Enter an integer #" + (i+1) + ": ");
+                numbers[i] = Integer.parseInt(SCANNER.nextLine());
+            } catch (NumberFormatException e) {
+                throw new NumberFormatException("Enter a valid integer!");
+            }
         }
         return numbers;
-    }
-
-    public static void main(String[] args) {
-        int count = 10;
-        int[] numbers = inputNumbers(count);
-
-        int sumFirstPositive = getSumFirstPositive(numbers);
-
-        System.out.println("=============================================");
-        if (sumFirstPositive != -1) {
-            System.out.println("First 5 integers are positive numbers. Their sum is: " + sumFirstPositive);
-        } else {
-            int productOfLast = getProductOfLast(numbers);
-            System.out.println("There is a negative integer in the first 5 numbers.");
-            System.out.println("The product of the last 5 indices of array is: " + productOfLast);
-        }
-        SCANNER.close();
     }
 }

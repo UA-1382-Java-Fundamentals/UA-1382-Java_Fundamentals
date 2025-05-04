@@ -15,7 +15,7 @@ public class FacultyStudents {
     static final Scanner SCANNER = new Scanner(System.in);
 
     public static void main(String[] args) {
-        int maxStudents = 0;
+        int maxStudents;
         while (true) {
             try {
                 maxStudents = setMaxStudents("Enter the maximum number of students: ");
@@ -27,8 +27,8 @@ public class FacultyStudents {
 
         System.out.println("Let's see how many students attended classes during a particular season.");
 
-        String seasonInput = null;
-        Seasons season = null;
+        String seasonInput;
+        Seasons season;
         while (true) {
             while (true) {
                 try {

@@ -11,7 +11,7 @@ class RandomGuessGameTest {
         int userGuess = 10;
         int guessNumber = 1;
         String expected = "Your guess is too high! Try again";
-        String actual = RandomGuessGame.guessCheck(userGuess, guessNumber);
+        String actual = Guess.guessCheck(userGuess, guessNumber);
         assertEquals(expected, actual);
     }
 
@@ -20,7 +20,7 @@ class RandomGuessGameTest {
         int userGuess = 1;
         int guessNumber = 10;
         String expected = "Your guess is too low! Try again";
-        String actual = RandomGuessGame.guessCheck(userGuess, guessNumber);
+        String actual = Guess.guessCheck(userGuess, guessNumber);
         assertEquals(expected, actual);
     }
 
@@ -29,7 +29,7 @@ class RandomGuessGameTest {
         int userGuess = 10;
         int guessNumber = 10;
         String expected = "Your guess is correct!";
-        String actual = RandomGuessGame.guessCheck(userGuess, guessNumber);
+        String actual = Guess.guessCheck(userGuess, guessNumber);
         assertEquals(expected, actual);
     }
 }

@@ -6,7 +6,7 @@ public class HTTPErrorHandler {
     static final Scanner SCANNER = new Scanner(System.in);
 
     public static void main(String[] args) {
-        int code = 0;
+        int code;
         while (true) {
             try {
                 code = inputCode("Enter HTTP code: ");
@@ -16,7 +16,7 @@ public class HTTPErrorHandler {
             }
         }
 
-        HTTPError httpError = null;
+        HTTPError httpError;
         try {
             httpError = HTTPError.getErrorCode(code);
             System.out.printf(httpError.toString());

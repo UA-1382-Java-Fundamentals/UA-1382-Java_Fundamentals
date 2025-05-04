@@ -41,7 +41,7 @@ public class Dog {
     }
 
     public static int inputAge(String message) {
-        int value = 0;
+        int value;
         while (true) {
             try {
                 System.out.print(message);
