@@ -5,7 +5,7 @@ public class Developer extends Employee {
 
     public Developer(String name, int age, double salary, String position) {
         super(name, age, salary);
-        Position = position;
+        this.Position = position;
     }
 
     public String getPosition() {
