@@ -11,12 +11,13 @@ public class Main {
         int[] array = new int[count];
         int start = 1;
         int end = 100;
+        String message = String.format("Enter an integer between %d and %d: ", start, end);
         for (int i = 0; i < array.length; i++) {
             while (true) {
                 try {
-                    array[i] = readNumber(start, end);
+                    array[i] = readNumber(inputNumber(message), start, end);
                     break;
-                } catch (NumberTooSmallException | NumberTooBigException e) {
+                } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
             }
@@ -25,9 +26,7 @@ public class Main {
         System.out.println(Arrays.toString(array));
     }
 
-    static int readNumber(int start, int end) throws NumberTooBigException, NumberTooSmallException {
-        String message = String.format("Enter an integer between %d and %d: ", start, end);
-        int input = inputNumber(message);
+    static int readNumber(int input, int start, int end) throws NumberTooBigException, NumberTooSmallException {
         if (input < start) {
             throw new NumberTooSmallException("Number is too small!");
         } else if (input > end) {
