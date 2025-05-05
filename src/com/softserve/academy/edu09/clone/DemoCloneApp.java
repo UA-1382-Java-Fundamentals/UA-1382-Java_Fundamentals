@@ -15,7 +15,7 @@ public class DemoCloneApp {
         System.out.println("*".repeat(50));
 
         // Modify the cloned object's properties
-        copyOfPerson.setFullName(new FullName("Jane", "Smith"));
+        copyOfPerson.setFullName("Jane", "Smith");
         copyOfPerson.setAge(25);
 
         System.out.println("After modification:");

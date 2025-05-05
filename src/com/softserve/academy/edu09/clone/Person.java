@@ -27,7 +27,7 @@ public class Person implements Cloneable {
      * Creates a deep copy of this Person object.
      * This method overrides the clone method to make a deep copy of the object and its reference fields.
      * The method is changed to return a Person object (covariant return type) and has public visibility.
-     * 
+     *
      * @return A deep copy of this Person object
      * @throws AssertionError if cloning is not supported (should not happen as this class implements Cloneable)
      */
@@ -45,8 +45,9 @@ public class Person implements Cloneable {
         }
     }
 
-    public void setFullName(FullName fullName) {
-        this.fullName = fullName;
+    public void setFullName(String firstName, String lastName) {
+        this.fullName.setFirstName(firstName);
+        this.fullName.setLastName(lastName);
     }
 
     public void setAge(int age) {
