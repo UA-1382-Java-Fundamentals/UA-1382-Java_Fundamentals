@@ -33,7 +33,8 @@ public class Main {
         SH.printList(students);
         System.out.println("=".repeat(50));
 
-        SH.graduateStudents(students, 3);
+        double passGrade = 3;
+        SH.graduateStudents(students, passGrade);
         System.out.println("List of students, who passed and advanced the year: ");
         SH.printList(students);
         System.out.println("=".repeat(50));
