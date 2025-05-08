@@ -13,6 +13,14 @@ public class StudentHandler {
         return sum / student.getGrades().size();
     }
 
+    public void promoteStudent(Student student) {
+        student.setCourse(student.getCourse() + 1);
+    }
+
+    public void dropStudent(List<Student> students, int index) {
+        students.remove(index);
+    }
+
     public void printList(List<Student> students) {
         for (Student s : students) {
             System.out.println(s.toString());
@@ -33,12 +41,10 @@ public class StudentHandler {
         for (int i = 0; i < students.size(); i++) {
             double averageGrade = getAverageGrade(students.get(i));
             if (averageGrade < passGrade) {
-                students.remove(i);
+                dropStudent(students, i);
             }
             else if (averageGrade >= passGrade) {
-                students.get(i).setCourse(
-                        students.get(i).getCourse()+1
-                );
+                promoteStudent(students.get(i));
             }
         }
     }
