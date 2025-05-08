@@ -1,4 +1,5 @@
-import Task05.PositiveInteger;
+package Task05;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
