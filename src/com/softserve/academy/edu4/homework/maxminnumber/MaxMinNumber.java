@@ -1,7 +1,5 @@
 package com.softserve.academy.edu4.homework.maxminnumber;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Scanner;
 
 //Write a program that prompts the user to input three integer numbers. The program should determine the
@@ -15,7 +13,7 @@ public class MaxMinNumber {
     public MaxMinNumber(){
     }
 
-    public void userInput(@NotNull Scanner scan) {
+    public void userInput(Scanner scan) {
         System.out.println("Input first number: ");
         this.a = scan.nextInt();
 
