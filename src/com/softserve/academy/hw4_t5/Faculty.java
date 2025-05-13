@@ -1,20 +1,59 @@
 package com.softserve.academy.hw4_t5;
 
-public class Faculty {
-    private final String name;
-    private final int numberOfStudents;
-    private final Season season;
+import java.util.Scanner;
 
-    public Faculty(String name, int numberOfStudents, Season season) {
+public class Faculty {
+    private String name;
+    private int numberOfStudents;
+    private Season season;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public int getNumberOfStudents() {
+        return numberOfStudents;
+    }
+
+    public void setNumberOfStudents(int numberOfStudents) {
         this.numberOfStudents = numberOfStudents;
+    }
+
+    public Season getSeason() {
+        return season;
+    }
+
+    public void setSeason(Season season) {
         this.season = season;
     }
 
-    public void printInfo() {
-        System.out.println("Faculty name: " + name);
-        System.out.println("Number of students: " + numberOfStudents);
-        System.out.println("Season: " + season.getName());
-        System.out.println("Academic period: " + season.getAcademicPeriod());
+    public Faculty() {
+
+    }
+
+    public static Faculty getFacultyFromConsole() {
+        Faculty faculty = new Faculty();
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter faculty name: ");
+        faculty.setName(scanner.nextLine());
+
+        System.out.println("Enter season (WINTER, SPRING, SUMMER, AUTUMN): ");
+        String input = scanner.nextLine();
+        faculty.setSeason(Season.valueOf(input));
+
+        System.out.println("Enter number of students: ");
+        faculty.setNumberOfStudents(scanner.nextInt());
+
+        return faculty;
+    }
+
+    public void printInfo(String text, String value) {
+        System.out.println(text + value);
     }
 }
