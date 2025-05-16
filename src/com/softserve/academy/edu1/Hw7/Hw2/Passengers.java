@@ -1,0 +1,16 @@
+package com.softserve.academy.edu1.Hw7.Hw2;
+
+public class Passengers {
+    private int passengers;
+
+    public Passengers() {}
+
+    public int getPassengers() {
+        return passengers;
+    }
+
+    public void setPassengers(int passengers) {
+        this.passengers = passengers;
+    }
+}
+

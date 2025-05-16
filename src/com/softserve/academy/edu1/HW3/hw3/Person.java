@@ -32,6 +32,7 @@ public class Person {
         return firstName + " " + lastName + " " + birthYear + " age:" + getAge();
     }
     public long getAge() {
+        return birthYear;
     }
 
     public void changeName() {
