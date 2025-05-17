@@ -5,8 +5,8 @@ public class ContractEmployee extends Employee implements Payment {
     int numberOfHoursWorkedInAMonth;
     String federalTaxId;
 
-    public ContractEmployee(String empolyeeId, int oneHourPayment, int numberOfHoursWorkedInAMonth, String federalTaxId) {
-        super(empolyeeId);
+    public ContractEmployee(String empolyeeId, String employeeName, int oneHourPayment, int numberOfHoursWorkedInAMonth, String federalTaxId) {
+        super(empolyeeId, employeeName);
         this.oneHourPayment = oneHourPayment;
         this.numberOfHoursWorkedInAMonth = numberOfHoursWorkedInAMonth;
         this.federalTaxId = federalTaxId;
