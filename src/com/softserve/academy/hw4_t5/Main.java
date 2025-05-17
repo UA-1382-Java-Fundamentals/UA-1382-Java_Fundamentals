@@ -22,8 +22,8 @@ package com.softserve.academy.hw4_t5;
 public class Main {
     public static void main(String[] args) {
         Faculty[] faculties = {
-            Faculty.getFacultyFromConsole(),
-            Faculty.getFacultyFromConsole()
+                Faculty.getFacultyFromConsole(),
+                Faculty.getFacultyFromConsole()
         };
 
         for (Faculty faculty : faculties) {
