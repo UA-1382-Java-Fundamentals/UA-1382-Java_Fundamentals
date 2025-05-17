@@ -1,9 +1,9 @@
 package com.softserve.academy.hw7_t1;
 
 public abstract class Employee implements Payment {
-    String employeeId;
-    String employeeName;
-    static int sumSalary;
+    protected String employeeId;
+    protected String employeeName;
+    protected static int sumSalary;
 
     public String getEmployeeId() {
         return employeeId;
@@ -22,7 +22,7 @@ public abstract class Employee implements Payment {
         return sumSalary / numberOfEmployees;
     }
 
-    public void printEmployees (int salary, String idType, String id) {
-        System.out.println("Employee ID: " + employeeId + "; Employee name: " + employeeName + "; Salary: " + salary + "; " + idType + id);
+    public String toString() {
+        return "Employee ID: " + employeeId + "; Employee name: " + employeeName + "; Salary: " + calculatePay();
     }
 }

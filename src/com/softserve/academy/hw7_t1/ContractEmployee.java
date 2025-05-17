@@ -1,8 +1,8 @@
 package com.softserve.academy.hw7_t1;
 
 public class ContractEmployee extends Employee implements Payment {
-    int oneHourPayment;
-    int numberOfHoursWorkedInAMonth;
+    private final int oneHourPayment;
+    private final int numberOfHoursWorkedInAMonth;
     String federalTaxId;
 
     public ContractEmployee(String empolyeeId, String employeeName, int oneHourPayment, int numberOfHoursWorkedInAMonth, String federalTaxId) {
@@ -12,12 +12,13 @@ public class ContractEmployee extends Employee implements Payment {
         this.federalTaxId = federalTaxId;
     }
 
-    public String getFederalTaxId() {
-        return federalTaxId;
-    }
-
     @Override
     public int calculatePay() {
         return oneHourPayment * numberOfHoursWorkedInAMonth;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "; Federal Tax ID: " + federalTaxId;
     }
 }

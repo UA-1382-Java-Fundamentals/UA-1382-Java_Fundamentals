@@ -1,12 +1,8 @@
 package com.softserve.academy.hw7_t1;
 
 public class SalariedEmployee extends Employee implements Payment {
-    int salaryForOneMonth;
-    String socialSecurityNumber;
-
-    public String getSocialSecurityNumber() {
-        return socialSecurityNumber;
-    }
+    private final int salaryForOneMonth;
+    private final String socialSecurityNumber;
 
     public SalariedEmployee(String employeeld, String employeeName, int salaryForOneMonth, String socialSecurityNumber) {
         super(employeeld, employeeName);
@@ -17,5 +13,10 @@ public class SalariedEmployee extends Employee implements Payment {
     @Override
     public int calculatePay() {
         return salaryForOneMonth;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "; Social Security Number: " + socialSecurityNumber;
     }
 }

@@ -26,7 +26,7 @@ public class Main {
         Employee[] employees = {
             new ContractEmployee("15", "Dan", 140, 100, "001"),
             new SalariedEmployee("81", "Nick", 1500, "123"),
-                new SalariedEmployee("76", "Aneela", 1500, "26"),
+            new ContractEmployee("76", "Aneela", 1500, 51, "026"),
             new SalariedEmployee("1", "Andie", 80, "179")
         };
 
@@ -34,13 +34,7 @@ public class Main {
 
         for (Employee emp : employees) {
             emp.sumSalary(emp.calculatePay());
-
-            if (emp instanceof ContractEmployee) {
-                emp.printEmployees(emp.calculatePay(), "Federal Tax ID: ", ((ContractEmployee) emp).getFederalTaxId());
-            }
-            if (emp instanceof SalariedEmployee) {
-                emp.printEmployees(emp.calculatePay(), "Social Security Number: ", ((SalariedEmployee) emp).getSocialSecurityNumber());
-            }
+            System.out.println(emp);
         }
 
         System.out.println("Average salary: " + Employee.calculateAverageSalary(Array.getLength(employees)));
