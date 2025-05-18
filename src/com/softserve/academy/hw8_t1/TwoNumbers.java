@@ -18,11 +18,10 @@ public class TwoNumbers {
             } catch (InputMismatchException e) {
                 System.out.println("Not a number");
                 exit = true;
+                break;
             } catch (Exception e) {
                 System.out.println("Unknown error");
-            }
-
-            if (exit) {
+                exit = true;
                 break;
             }
         }
