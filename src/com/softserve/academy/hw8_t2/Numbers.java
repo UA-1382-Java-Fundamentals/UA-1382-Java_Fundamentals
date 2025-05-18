@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Numbers {
     private final int[] numbers = new int[10];
 
-    public void readNumber(int start, int end) throws IndexOutOfBoundsException, ArithmeticException {
+    public void readNumber(int start, int end) {
         Scanner sc = new Scanner(System.in);
 
         int number;
