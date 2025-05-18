@@ -12,7 +12,7 @@ package com.softserve.academy.hw8_t2;
 import java.util.InputMismatchException;
 
 public class Main {
-    public static void main(String[] args) throws InputMismatchException, IndexOutOfBoundsException, ArithmeticException {
+    public static void main(String[] args) {
         Numbers numbers = new Numbers();
 
         try {
