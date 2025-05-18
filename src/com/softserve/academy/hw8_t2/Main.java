@@ -16,7 +16,7 @@ public class Main {
         Numbers numbers = new Numbers();
 
         try {
-            numbers.readNumber(1, 100);
+            int[] tenNumbers = numbers.readNumbers(1, 100);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Number is not between 1 and 100");
         } catch (InputMismatchException e) {
