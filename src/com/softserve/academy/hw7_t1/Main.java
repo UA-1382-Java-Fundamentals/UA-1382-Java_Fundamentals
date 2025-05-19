@@ -33,10 +33,11 @@ public class Main {
         Arrays.sort(employees, new SalaryEmployeeComparator());
 
         for (Employee emp : employees) {
-            emp.sumSalary(emp.calculatePay());
+            emp.calculateTotalSalary();
             System.out.println(emp);
         }
 
-        System.out.println("Average salary: " + Employee.calculateAverageSalary(Array.getLength(employees)));
+        Employee.setEmployeeAmount(Array.getLength(employees));
+        System.out.println("Average salary: " + Employee.calculateAverageSalary());
     }
 }

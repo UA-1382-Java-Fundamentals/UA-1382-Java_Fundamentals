@@ -2,14 +2,12 @@ package com.softserve.academy.hw7_t1;
 
 import java.util.Comparator;
 
-public class SalaryEmployeeComparator implements Comparator<Object> {
+public class SalaryEmployeeComparator implements Comparator<Employee> {
 
-    public int compare (Object obj1, Object obj2) {
-        Employee employee1 = (Employee) obj1;
-        Employee employee2 = (Employee) obj2;
-        if (employee1.calculatePay() == employee2.calculatePay()) {
-            return employee2.getEmployeeId().compareTo(employee1.getEmployeeId());
+    public int compare (Employee obj1, Employee obj2) {
+        if (obj1.calculatePay() == (obj2.calculatePay())) {
+            return (obj2.getEmployeeId().compareTo(obj1.getEmployeeId()));
         }
-        return Integer.compare(employee2.calculatePay(), employee1.calculatePay());
+        return Integer.compare(obj2.calculatePay(), obj1.calculatePay());
     }
 }

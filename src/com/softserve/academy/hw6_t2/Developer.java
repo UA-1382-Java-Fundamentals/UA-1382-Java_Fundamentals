@@ -1,7 +1,11 @@
 package com.softserve.academy.hw6_t2;
 
 public class Developer extends Employee {
-    private final String position;
+    private String position;
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
 
     public Developer(String name, int age, double salary, String position) {
         super(name, age, salary);

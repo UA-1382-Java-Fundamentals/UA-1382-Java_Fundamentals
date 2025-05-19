@@ -1,6 +1,6 @@
 package com.softserve.academy.hw7_t1;
 
-public class SalariedEmployee extends Employee implements Payment {
+public class SalariedEmployee extends Employee {
     private final int salaryForOneMonth;
     private final String socialSecurityNumber;
 

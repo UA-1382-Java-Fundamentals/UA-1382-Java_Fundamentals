@@ -1,9 +1,9 @@
 package com.softserve.academy.hw6_t1;
 
 public abstract class Bird {
-    private final String type;
-    private final boolean feathers;
-    private final boolean layEggs;
+    protected final String type;
+    protected final boolean feathers;
+    protected final boolean layEggs;
 
     public String getType() {
         return type;

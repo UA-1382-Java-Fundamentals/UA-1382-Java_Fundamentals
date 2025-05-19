@@ -1,6 +1,6 @@
 package com.softserve.academy.hw7_t1;
 
-public class ContractEmployee extends Employee implements Payment {
+public class ContractEmployee extends Employee {
     private final int oneHourPayment;
     private final int numberOfHoursWorkedInAMonth;
     String federalTaxId;
