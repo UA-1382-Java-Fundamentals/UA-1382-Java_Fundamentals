@@ -18,7 +18,6 @@ all elements of the list.
 
 package com.softserve.academy.hw7_t1;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class Main {
@@ -33,11 +32,10 @@ public class Main {
         Arrays.sort(employees, new SalaryEmployeeComparator());
 
         for (Employee emp : employees) {
-            emp.calculateTotalSalary();
             System.out.println(emp);
         }
 
-        Employee.setEmployeeAmount(Array.getLength(employees));
-        System.out.println("Average salary: " + Employee.calculateAverageSalary());
+        EmployeesService employeesService = new EmployeesService(employees);
+        System.out.println("Average salary: " + employeesService.getAverageSalary());
     }
 }
