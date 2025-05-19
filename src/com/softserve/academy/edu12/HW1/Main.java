@@ -24,7 +24,7 @@ public class Main {
         System.out.printf("The longest word is \"%s\"\n", longestWord);
         System.out.printf("There are %d letters in it\n", longestWord.length());
         System.out.printf("The second word in the sentence is \"%s\"\n", words[1]);
-        System.out.printf("Rerversed it reads \"%s\"\n", stringReverse(words[1]));
+        System.out.printf("Reversed it reads \"%s\"\n", stringReverse(words[1]));
     }
 
     static String stringReverse(String str) {
