@@ -199,7 +199,7 @@ public class EmployeeHandler {
         }
     }
 
-    public void outputEmlpoyeeById(Map<Integer, Employee> employeeMap, Integer employeeId) {
+    public void outputEmployeeById(Map<Integer, Employee> employeeMap, Integer employeeId) {
         if (isIdValid(employeeMap, employeeId)) {
             System.out.println("Employee found: " + employeeMap.get(employeeId));
         }

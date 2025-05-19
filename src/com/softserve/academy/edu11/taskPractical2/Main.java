@@ -26,7 +26,9 @@ package softserve.academy.edu11.taskPractical2;
 //position. The user should be prompted to enter the desired sorting criterion, and the sorted
 //map should then be displayed on the screen.
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Main {
     final static EmployeeHandler EH = new EmployeeHandler();
@@ -130,7 +132,7 @@ public class Main {
                 case 7: {
                     // Get employee by ID
                     Integer employeeId = EH.readInteger("Enter employee's id: ");
-                    EH.outputEmlpoyeeById(employeeMap, employeeId);
+                    EH.outputEmployeeById(employeeMap, employeeId);
                     System.out.println("===".repeat(15));
                     break;
                 }
