@@ -9,22 +9,16 @@ a1, a2, ..., a10, such that 1 < a1 < ... < a10 < 100
 
 package com.softserve.academy.hw8_t2;
 
-import java.util.InputMismatchException;
-
 public class Main {
     public static void main(String[] args) {
         Numbers numbers = new Numbers();
 
         try {
-            int[] tenNumbers = numbers.readNumbers(1, 100);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Number is not between 1 and 100");
-        } catch (InputMismatchException e) {
-            System.out.println("Not integer number");
-        } catch (ArithmeticException e) {
-            System.out.println("Current number should be bigger than previous");
+            numbers.readNumbers();
+        } catch (NumberFormatException e) {
+            System.out.println("! Not integer number !");
         } catch (Exception e) {
-            System.out.println("Unknown error");
+            System.out.println("! Unknown error !");
         }
     }
 }
