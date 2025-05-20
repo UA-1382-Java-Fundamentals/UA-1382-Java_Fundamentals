@@ -1,4 +1,4 @@
-package com.softserve.academy.hw9_t1;
+package com.softserve.academy.hw9_t1_t2;
 
 public class FullName {
     protected String firstName;
