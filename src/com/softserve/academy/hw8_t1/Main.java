@@ -10,6 +10,6 @@ public class Main {
     public static void main(String[] args) {
         TwoNumbers twoNumbers = new TwoNumbers();
         twoNumbers.inputNumbers();
-        twoNumbers.printResults();
+        System.out.println(twoNumbers.div());
     }
 }
