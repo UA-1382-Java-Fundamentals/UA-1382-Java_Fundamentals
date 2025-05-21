@@ -102,7 +102,10 @@ public class Numbers {
             }
         }
 
-        myCollection.remove(indexOfMinElement +1);
+        if (indexOfMinElement < myCollection.size() - 1) {
+            myCollection.remove(indexOfMinElement +1);
+        }
+
     }
 
 }
