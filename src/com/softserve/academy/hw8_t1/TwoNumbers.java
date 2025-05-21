@@ -6,12 +6,11 @@ import java.util.Scanner;
 
 public class TwoNumbers {
     List<Double> numbers = new ArrayList<>();
+    Scanner sc = new Scanner(System.in);
 
     public void inputNumbers() {
         final int numberCount = 2;
         String currentNumber;
-
-        Scanner sc = new Scanner(System.in);
 
         System.out.println("You will be asked to input two numbers (if a number is not integer, use a point separator)");
 

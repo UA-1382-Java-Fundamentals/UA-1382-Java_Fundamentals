@@ -12,13 +12,6 @@ package com.softserve.academy.hw8_t2;
 public class Main {
     public static void main(String[] args) {
         Numbers numbers = new Numbers();
-
-        try {
-            numbers.readNumbers();
-        } catch (NumberFormatException e) {
-            System.out.println("! Not integer number !");
-        } catch (Exception e) {
-            System.out.println("! Unknown error !");
-        }
+            numbers.inputNumbers(10, 1, 100);
     }
 }
