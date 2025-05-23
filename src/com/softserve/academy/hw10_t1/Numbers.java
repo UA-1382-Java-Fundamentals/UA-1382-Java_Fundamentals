@@ -26,7 +26,7 @@ public class Numbers {
             try {
                 myCollection.add(Integer.parseInt(sc.nextLine()));
             } catch (NumberFormatException e) {
-                throw new NumberFormatException("Not a number");
+                throw new NumberFormatException("Not an integer number");
             } catch (Exception e) {
                 throw new Exception("Unknown error");
             }
@@ -91,7 +91,7 @@ public class Numbers {
         int MinElement = 0;
         int indexOfMinElement = 0;
 
-        for (int i = 0; i <= myCollection.size() - 1; i++) {
+        for (int i = 0; i < myCollection.size(); i++) {
             if (i == 1) {
                 MinElement = myCollection.get(i);
                 indexOfMinElement = i;
