@@ -8,6 +8,6 @@ public class Main {
     static final LocalDate LD = LocalDate.now();
 
     public static void main(String[] args) {
-        System.out.println(LD.getDayOfWeek());
+        System.out.println("Today's day is " + LD.getDayOfWeek().toString().toLowerCase());
     }
 }

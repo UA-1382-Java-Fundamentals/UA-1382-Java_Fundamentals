@@ -29,5 +29,7 @@ public class Main {
         System.out.printf("On %s it was %s\n", localDate, localDate.getDayOfWeek().toString().toLowerCase());
         LocalDate localDateLater = localDate.plusMonths(6);
         System.out.printf("In 6 months it will be %s (%s)\n", localDateLater, localDateLater.getDayOfWeek().toString().toLowerCase());
+        localDateLater = localDate.plusMonths(12);
+        System.out.printf("In 12 months it will be %s (%s)\n", localDateLater, localDateLater.getDayOfWeek().toString().toLowerCase());
     }
 }
