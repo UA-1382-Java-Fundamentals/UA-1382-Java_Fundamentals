@@ -15,14 +15,11 @@ public class Student extends Person implements Cloneable {
 
     @Override
     public String activity(String subtype) {
-        if (subtype.equals("Student")) {
-            return "I am a student";
-        } else if (subtype.equals("Trainee")) {
-            return "I am a trainee";
-        }
-        else {
-            return "I am another subtype";
-        }
+        return switch (subtype) {
+            case "Student" -> "I am a student";
+            case "Trainee" -> "I am a trainee";
+            default -> "I am another subtype";
+        };
     }
 
     @Override
