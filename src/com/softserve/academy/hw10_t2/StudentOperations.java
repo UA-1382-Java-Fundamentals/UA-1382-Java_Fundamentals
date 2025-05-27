@@ -65,15 +65,6 @@ public class StudentOperations {
 
     // print students
     public static String printStudents(List<Student> students) {
-        /*
-        for (Student s : students) {
-            return "\nStudent name: " + s.getName() +
-                    ", Group: " + s.getGroup() +
-                    ", Course: " + s.getCourse() +
-                    ", Grades: " + s.getGrades();
-        }
-
-         */
         return students.toString();
     }
 }

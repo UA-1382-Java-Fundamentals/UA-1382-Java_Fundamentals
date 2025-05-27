@@ -12,6 +12,10 @@ public class Student {
         return name;
     }
 
+    public int getGroup() {
+        return group;
+    }
+
     public int getCourse() {
         return course;
     }
@@ -37,4 +41,6 @@ public class Student {
                 ", Course: " + course +
                 ", Grades: " + grades;
     }
+
+
 }
