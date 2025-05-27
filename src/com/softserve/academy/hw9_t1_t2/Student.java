@@ -7,8 +7,8 @@ public class Student extends Person implements Cloneable {
 
     @Override
     public String info() {
-        return "First Name: " + fullName.firstName +
-                ", Last Name: " + fullName.lastName +
+        return "First Name: " + fullName.getFirstName() +
+                ", Last Name: " + fullName.getLastName() +
                 ", Age: " + age
                 ;
     }
@@ -26,7 +26,7 @@ public class Student extends Person implements Cloneable {
     }
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
-        return super.clone();
+    public Student clone() throws CloneNotSupportedException {
+        return (Student) super.clone();
     }
 }

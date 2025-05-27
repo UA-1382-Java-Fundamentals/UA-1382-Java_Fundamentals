@@ -32,7 +32,7 @@ public class Main {
     public static void main(String[] args) throws CloneNotSupportedException {
         Student student1 = new Student("Adam", "Li", 35, "Student");
         Student student2 = new Student("Alan", "Gor", 30, "Trainee");
-        Student student3 = (Student) student2.clone();
+        Student student3 = student2.clone();
 
         Student[] students = {student1, student2, student3};
 
