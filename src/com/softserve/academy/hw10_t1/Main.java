@@ -34,8 +34,9 @@ public class Main {
         numbers.insertZero();
         System.out.println(numbers.getMyCollection());
 
-        numbers.copyElements();
+        numbers.copyElements(4);
         System.out.println(numbers.getList1());
+        System.out.println(numbers.getList2());
 
         numbers.removeLastEvenElement();
 

@@ -7,8 +7,10 @@ import java.util.Scanner;
 
 public class Numbers {
     private final List<Integer> myCollection = new ArrayList<>();
-    private final int amount = 10;
+    private final int maxAmount = 10;
     private final List<Integer> list1 = new ArrayList<>();
+    private final List<Integer> list2 = new ArrayList<>();
+
     Scanner sc = new Scanner(System.in);
 
     public List<Integer> getMyCollection() {
@@ -19,9 +21,13 @@ public class Numbers {
         return list1;
     }
 
+    public List<Integer> getList2() {
+        return list2;
+    }
+
     // Fill collection myCollection of 10 integers from the console
     public void inputElements() throws Exception {
-        for (int i = 0; i < amount; i++) {
+        for (int i = 0; i < maxAmount; i++) {
             System.out.println("Input an integer number");
             try {
                 myCollection.add(Integer.parseInt(sc.nextLine()));
@@ -35,12 +41,31 @@ public class Numbers {
 
     // Swap the maximum and minimum elements in the list
     public void swapElements() {
-        int tempNumber;
+        int minNumber;
+        int maxNumber;
 
         try {
-            tempNumber = myCollection.getFirst();
-            myCollection.set(0, myCollection.getLast());
-            myCollection.set(myCollection.size() - 1, tempNumber);
+            minNumber = myCollection.getFirst();
+            for (int i = 1; i < myCollection.size(); i++) {
+                if (myCollection.get(i) < minNumber) {
+                    minNumber = myCollection.get(i);
+                }
+            }
+
+            maxNumber = myCollection.getFirst();
+            for (int i = 1; i < myCollection.size(); i++) {
+                if (myCollection.get(i) > maxNumber) {
+                    maxNumber = myCollection.get(i);
+                }
+            }
+
+            for (int i = 1; i < myCollection.size(); i++) {
+                if (myCollection.get(i) == minNumber) {
+                    myCollection.set(i, maxNumber);
+                } else if (myCollection.get(i) == maxNumber) {
+                    myCollection.set(i, minNumber);
+                }
+            }
         } catch (NoSuchElementException e) {
             throw new NoSuchElementException("Array List is empty");
         }
@@ -50,7 +75,7 @@ public class Numbers {
     // Insert a zero between all neighboring elements collection myCollection with different signs
     public void insertZero() {
         for (int i = 1; i < myCollection.size(); i++) {
-            if (myCollection.get(i) > 0 && myCollection.get(i-1) < 0 || myCollection.get(i) < 0 && myCollection.get(i-1) > 0) {
+            if (myCollection.get(i) * myCollection.get(i-1) < 0) {
                 myCollection.add(i, 0);
             }
         }
@@ -58,15 +83,14 @@ public class Numbers {
 
     // Copy the first k elements of the myCollection to the list1, in direct order, and the rest to the list2 in
     //    reverse order.
-    public void copyElements() {
-        int numberOfElements = 4;
+    public void copyElements(int k) {
 
-        for (int i = 0; i <= numberOfElements; i++) {
+        for (int i = 0; i <= k; i++) {
             list1.add(myCollection.get(i));
         }
 
-        for (int i = myCollection.size() - 1; i > numberOfElements; i--) {
-            list1.add(myCollection.get(i));
+        for (int i = myCollection.size() - 1; i > k; i--) {
+            list2.add(myCollection.get(i));
         }
     }
 
@@ -88,14 +112,10 @@ public class Numbers {
 
     // Remove from the list myCollection the element following the first minimum. If the minimum element is the last one, nothing needs to be removed.
     public void removeElementFollowingFirstMinElement() {
-        int MinElement = 0;
+        int MinElement = myCollection.getFirst();
         int indexOfMinElement = 0;
 
         for (int i = 0; i < myCollection.size(); i++) {
-            if (i == 1) {
-                MinElement = myCollection.get(i);
-                indexOfMinElement = i;
-            }
             if (myCollection.get(i) < MinElement) {
                 MinElement = myCollection.get(i);
                 indexOfMinElement = i;
@@ -103,9 +123,7 @@ public class Numbers {
         }
 
         if (indexOfMinElement < myCollection.size() - 1) {
-            myCollection.remove(indexOfMinElement +1);
+            myCollection.remove(indexOfMinElement + 1);
         }
-
     }
-
 }
