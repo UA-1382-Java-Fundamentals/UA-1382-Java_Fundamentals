@@ -6,6 +6,7 @@ package softserve.academy.edu15.HW3;
 
 public class Main {
     public static void main(String[] args) {
+
         Thread three = new Thread(() -> {
             int count = 5;
             for (int i = 0; i < count; i++) {

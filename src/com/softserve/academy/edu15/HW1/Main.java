@@ -5,6 +5,7 @@ package softserve.academy.edu15.HW1;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
+
         int count = 5;
         Thread lorem = new Thread(() -> {
             for (int i = 0; i < count; i++) {

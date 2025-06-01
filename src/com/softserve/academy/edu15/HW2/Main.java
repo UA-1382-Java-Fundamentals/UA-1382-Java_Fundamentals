@@ -8,6 +8,7 @@ public class Main {
     static final Object lockLeft = new Object();
 
     public static void main(String[] args) throws InterruptedException {
+
         int count = 100;
         for (int i = 0; i < count; i++) {
             leftRight();
