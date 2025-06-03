@@ -12,11 +12,11 @@ public class Employee {
 
     // validate for not null
     // email, dateOfBirth
-    public Employee(String name, int salary, String position, int year, int month, int day, String email) {
+    public Employee(String name, int salary, String position, LocalDate dateOfBirth, String email) {
         this.name = name;
         this.salary = salary;
         this.position = position;
-        this.dateOfBirth = LocalDate.of(year, month, day);
+        this.dateOfBirth = dateOfBirth;
         this.email = email;
     }
 
@@ -53,8 +53,8 @@ public class Employee {
     }
 
     //add validation not null
-    public void setDateOfBirth(int year, int month, int day) {
-        this.dateOfBirth = LocalDate.of(year, month, day);
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     //add validation not null

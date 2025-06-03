@@ -13,7 +13,7 @@ public class TaskHandler {
                         String newStaff) {
         Set<Integer> idSet = taskMap.keySet();
         Integer newId = Collections.max(idSet) + 1;
-        HashSet<Integer> staffSet = READER.parseStaffString(newStaff);
+        HashSet<Integer> staffSet = (HashSet<Integer>) READER.parseStaffString(newStaff);
         taskMap.put(
                 newId,
                 new Task(
@@ -62,7 +62,7 @@ public class TaskHandler {
         task.setName(newName);
         task.setActive(newStatus);
         task.setPriority(newPriority);
-        task.setStaff(READER.parseStaffString(newStaff));
+        task.setStaff((HashSet<Integer>) READER.parseStaffString(newStaff));
     }
 
     public List<Employee> getEmployeesEngaged(Map<Integer, Employee> employeeMap, Map<Integer, Task> taskMap, Integer taskId) {

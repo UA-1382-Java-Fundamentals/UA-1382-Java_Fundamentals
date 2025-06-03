@@ -14,16 +14,6 @@ public class InputValidator {
     Pattern emailPattern = Pattern.compile("\\w+@\\w+\\.[A-z]{2,}");
     Pattern datePattern = Pattern.compile("\\d{4}-\\d{1,2}-\\d{1,2}");
 
-    public void checkDateRange(int year, int month, int day) {
-        if (year <= (LocalDate.now().getYear() - 100) || year >= LocalDate.now().getYear()) {
-            throw new IllegalArgumentException("Invalid year!");
-        } else if (month < 1 || month > 12) {
-            throw new IllegalArgumentException("Invalid month!");
-        } else if (day > Month.of(month).length(GC.isLeapYear(year))) {
-            throw new IllegalArgumentException("Invalid day!");
-        }
-    }
-
     public boolean isEmployeePresent(Map<Integer, Employee> employeeMap, Integer employeeId) {
         return employeeMap.containsKey(employeeId);
     }
@@ -42,10 +32,20 @@ public class InputValidator {
         }
     }
 
-    public void checkValidDate(String dateString) {
+    public void checkDateFormat(String dateString) {
         Matcher matcher = datePattern.matcher(dateString);
         if (!matcher.find()) {
             throw new IllegalArgumentException("Please enter a valid date!");
+        }
+    }
+
+    public void checkDateValues(int year, int month, int day) {
+        if (year <= (LocalDate.now().getYear() - 100) || year >= LocalDate.now().getYear()) {
+            throw new IllegalArgumentException("Invalid year!");
+        } else if (month < 1 || month > 12) {
+            throw new IllegalArgumentException("Invalid month!");
+        } else if (day > Month.of(month).length(GC.isLeapYear(year))) {
+            throw new IllegalArgumentException("Invalid day!");
         }
     }
 

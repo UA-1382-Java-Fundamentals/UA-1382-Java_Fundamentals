@@ -1,18 +1,18 @@
 package softserve.academy.graduation;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class EmployeeHandler {
     final static ConsolePrinter PRINTER = new ConsolePrinter();
     final static InputValidator VALIDATOR = new InputValidator();
 
-    // TODO: change hashSet to LocalDate
     public void addEmployee(
             Map<Integer, Employee> employeeMap,
             String newName,
             int newSalary,
             String newPosition,
-            HashMap<String, Integer> newDateOfBirth,
+            LocalDate newDateOfBirth,
             String newEmail) {
         Set<Integer> idSet = employeeMap.keySet();
         Integer newId = Collections.max(idSet) + 1;
@@ -24,9 +24,7 @@ public class EmployeeHandler {
                             newName,
                             newSalary,
                             newPosition,
-                            newDateOfBirth.get("year"),
-                            newDateOfBirth.get("month"),
-                            newDateOfBirth.get("day"),
+                            newDateOfBirth,
                             newEmail
                     )
             );
@@ -36,14 +34,13 @@ public class EmployeeHandler {
         }
     }
 
-    // TODO: change hashSet to LocalDate
     public void editEmployee(
             Map<Integer, Employee> employeeMap,
             Integer targetId,
             String newName,
             int newSalary,
             String newPosition,
-            HashMap<String, Integer> newDateOfBirth,
+            LocalDate newDateOfBirth,
             String newEmail) {
 
         PRINTER.printLine();
@@ -57,11 +54,7 @@ public class EmployeeHandler {
             employee.setName(newName);
             employee.setSalary(newSalary);
             employee.setPosition(newPosition);
-            employee.setDateOfBirth(
-                    newDateOfBirth.get("year"),
-                    newDateOfBirth.get("month"),
-                    newDateOfBirth.get("day")
-            );
+            employee.setDateOfBirth(newDateOfBirth);
             employee.setEmail(newEmail);
             employeeMap.put(targetId, employee);
             System.out.printf("Changes for %s (ID:%d) saved!\n", newName, targetId);
@@ -74,12 +67,17 @@ public class EmployeeHandler {
     }
 
     public void sortEmployeesByName(Map<Integer, Employee> employeeMap) {
-        List<Map.Entry<Integer, Employee>> employeeList = new ArrayList<>(employeeMap.entrySet());
-        employeeList.sort(Comparator.comparing(e -> e.getValue().getName()));
-        employeeMap.clear();
-        for (Map.Entry<Integer, Employee> entry : employeeList) {
-            employeeMap.put(entry.getKey(), entry.getValue());
-        }
+//        List<Map.Entry<Integer, Employee>> employeeList = new ArrayList<>(employeeMap.entrySet());
+//        employeeList.sort(Comparator.comparing(e -> e.getValue().getName()));
+//        employeeMap.clear();
+//        for (Map.Entry<Integer, Employee> entry : employeeList) {
+//            employeeMap.put(entry.getKey(), entry.getValue());
+//        }
+        employeeMap.entrySet().stream()
+                .map(Map.Entry::getValue)
+                .sorted(Comparator.comparing(Employee::getName))
+                .collect()
+
     }
 
     public void sortEmployeesByPosition(Map<Integer, Employee> employeeMap) {

@@ -1,5 +1,6 @@
 package softserve.academy.graduation;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -29,22 +30,32 @@ public class InputReader {
     }
 
     // TODO: change hashSet to LocalDate
-    public HashMap<String, Integer> readDate(String prompt) {
+    /**
+    * Year : dateValues[0],
+    * Month : dateValues[1],
+    * Day : dateValues[2]
+    * */
+    public LocalDate readDate(String prompt) {
         while (true) {
             try {
                 String dateString = readString(prompt);
-                VALIDATOR.checkValidDate(dateString);
+                VALIDATOR.checkDateFormat(dateString);
                 int[] dateValues = parseDate(dateString);
-                VALIDATOR.checkDateRange(dateValues[0], dateValues[1], dateValues[2]);
-                return new HashMap<>(Map.of(
-                        "year", dateValues[0],
-                        "month", dateValues[1],
-                        "day", dateValues[2]
-                ));
+                VALIDATOR.checkDateValues(dateValues[0], dateValues[1], dateValues[2]);
+                return LocalDate.of(dateValues[0], dateValues[1], dateValues[2]);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private int[] parseDate(String dateString) {
+        String[] dateParts = dateString.split("-");
+        int[] dateValues = new int[3];
+        for (int i = 0; i < dateParts.length; i++) {
+            dateValues[i] = parseInt(dateParts[i]);
+        }
+        return dateValues;
     }
 
     public String readString(String prompt) {
@@ -64,15 +75,6 @@ public class InputReader {
             userSelection = readInteger("Enter your selection: ");
         }
         return userSelection;
-    }
-
-    private int[] parseDate(String dateString) {
-        String[] dateParts = dateString.split("-");
-        int[] dateValues = new int[3];
-        for (int i = 0; i < dateParts.length; i++) {
-            dateValues[i] = parseInt(dateParts[i]);
-        }
-        return dateValues;
     }
 
     private Integer parseInt(String input) {
@@ -120,7 +122,7 @@ public class InputReader {
         }
     }
 
-    public HashSet<Integer> parseStaffString(String staffString) {
+    public Set<Integer> parseStaffString(String staffString) {
         HashSet<Integer> staffSet = new HashSet<>();
         if (!staffString.equals("0")) {
             String[] staffElements = staffString.split(",");

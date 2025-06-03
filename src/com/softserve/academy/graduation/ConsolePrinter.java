@@ -24,9 +24,9 @@ public class ConsolePrinter {
         if (!employeeNames.containsValue(employeeName.toLowerCase())) {
             System.out.println(employeeName + " not found!");
         } else {
-            Iterator iterator = employeeMap.entrySet().iterator();
+            Iterator<Map.Entry<Integer, Employee>> iterator = employeeMap.entrySet().iterator();
             while (iterator.hasNext()) {
-                Map.Entry entry = (Map.Entry) iterator.next();
+                Map.Entry<Integer, Employee> entry = iterator.next();
                 if (employeeName.equalsIgnoreCase(((Employee) entry.getValue()).getName())) {
                     printLine();
                     System.out.printf("Employee found:\n%s: %s\n", entry.getKey(), entry.getValue());

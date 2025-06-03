@@ -1,5 +1,6 @@
 package softserve.academy.graduation;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class Main {
@@ -12,13 +13,13 @@ public class Main {
     public static void main(String[] args) {
 
         Map<Integer, Employee> employeeMap = new LinkedHashMap<>(Map.of(
-                1, new Employee("John Doe", 3000, "Senior", 1988, 8, 19, "dojo@gmail.com"),
-                3, new Employee("Clive Barker", 1000, "Junior", 2002, 5, 8, "cbark@gmail.com"),
-                4, new Employee("Stephen Brown", 1100, "Junior", 2001, 6, 20, "stbro@gmail.com"),
-                2, new Employee("Mike Foo", 2200, "Middle", 1996, 10, 16, "mikefmike@gmail.com"),
-                5, new Employee("Ellen Bar", 1900, "Middle", 1992, 9, 13, "bar.ellen@gmail.com"),
-                7, new Employee("Helga Deere", 3200, "Senior", 1986, 11, 3, "hedeere@gmail.com"),
-                6, new Employee("Frank Best", 3400, "Senior", 1985, 12, 20, "bestfbest@gmail.com")
+                1, new Employee("John Doe", 3000, "Senior", LocalDate.of(1988,8,19), "dojo@gmail.com"),
+                3, new Employee("Clive Barker", 1000, "Junior", LocalDate.of(2002, 5, 8), "cbark@gmail.com"),
+                4, new Employee("Stephen Brown", 1100, "Junior", LocalDate.of(2001, 6, 20), "stbro@gmail.com"),
+                2, new Employee("Mike Foo", 2200, "Middle", LocalDate.of(1996, 10, 16), "mikefmike@gmail.com"),
+                5, new Employee("Ellen Bar", 1900, "Middle", LocalDate.of(1992, 9, 13), "bar.ellen@gmail.com"),
+                7, new Employee("Helga Deere", 3200, "Senior", LocalDate.of(1986, 11, 3), "hedeere@gmail.com"),
+                6, new Employee("Frank Best", 3400, "Senior", LocalDate.of(1985,12,20), "bestfbest@gmail.com")
         ));
 
         /*Map<Integer, Task> taskMap = new LinkedHashMap<>(Map.of(
@@ -88,7 +89,7 @@ public class Main {
                                 String newName = READER.readEmployeeName("Enter name: ");
                                 int newSalary = READER.readInteger("Enter salary: ");
                                 String newPosition = READER.readString("Enter position: ");
-                                HashMap<String, Integer> newDateOfBirth = READER.readDate("Enter date of birth (YYYY-MM-DD): ");
+                                LocalDate newDateOfBirth = READER.readDate("Enter date of birth (YYYY-MM-DD): ");
                                 String newEmail = READER.readEmployeeEmail("Enter email: ");
                                 EMP_HANDLER.addEmployee(
                                         employeeMap,
@@ -127,8 +128,7 @@ public class Main {
                                     String newPosition = READER.readString("Enter new position: ");
 
                                     PRINTER.printEmployeeDate(employeeMap, targetId);
-                                    HashMap<String, Integer> newDateOfBirth = READER.readDate(
-                                            "Enter new date of birth (YYYY-MM-DD): ");
+                                    LocalDate newDateOfBirth = READER.readDate("Enter new date of birth (YYYY-MM-DD): ");
 
                                     PRINTER.printEmployeeEmail(employeeMap, targetId);
                                     String newEmail = READER.readEmployeeEmail("Enter email: ");
