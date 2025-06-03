@@ -4,12 +4,14 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Employee {
-    protected String name;
-    protected int salary;
-    protected String position;
-    protected LocalDate dateOfBirth;
-    protected String email;
+    private String name;
+    private int salary;
+    private String position;
+    private LocalDate dateOfBirth;
+    private String email;
 
+    // validate for not null
+    // email, dateOfBirth
     public Employee(String name, int salary, String position, int year, int month, int day, String email) {
         this.name = name;
         this.salary = salary;
@@ -50,10 +52,12 @@ public class Employee {
         this.position = position;
     }
 
+    //add validation not null
     public void setDateOfBirth(int year, int month, int day) {
         this.dateOfBirth = LocalDate.of(year, month, day);
     }
 
+    //add validation not null
     public void setEmail(String email) {
         this.email = email;
     }

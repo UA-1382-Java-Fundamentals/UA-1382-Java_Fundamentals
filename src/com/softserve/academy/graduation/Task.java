@@ -1,24 +1,23 @@
 package softserve.academy.graduation;
 
 import java.util.HashSet;
+import java.util.Objects;
 
 public class Task {
-    protected String name;
-    protected boolean isActive;
-    protected int priority;
-    protected HashSet<Integer> staff;
+    private String name;
+    private boolean activeFlag;
+    private int priority;
+    private HashSet<Integer> staff;
 
-    Handler HANDLER = new Handler();
-
-    public Task(String name, boolean active, int priority, String staffString) {
+    public Task(String name, boolean activeFlag, int priority, HashSet<Integer> staffSet) {
         this.name = name;
-        this.isActive = active;
+        this.activeFlag = activeFlag;
         this.priority = priority;
-        this.staff = HANDLER.parseStaffString(staffString);
+        this.staff = staffSet;
     }
 
     public boolean isActive() {
-        return isActive;
+        return activeFlag;
     }
 
     public int getPriority() {
@@ -29,24 +28,36 @@ public class Task {
         return name;
     }
 
+    public HashSet<Integer> getStaff() {
+        return staff;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void setActive(boolean activeFlag) {
+        this.activeFlag = activeFlag;
     }
 
     public void setPriority(int priority) {
         this.priority = priority;
     }
 
-    public void setStaff(String staffString) {
-        this.staff = HANDLER.parseStaffString(staffString);
+    public void setStaff(HashSet<Integer> staffSet) {
+        this.staff = staffSet;
     }
 
-    public HashSet<Integer> getStaff() {
-        return staff;
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return Objects.equals(name, task.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     @Override
