@@ -4,18 +4,28 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Employee {
-    protected String name;
-    protected int salary;
-    protected String position;
-    protected LocalDate dateOfBirth;
-    protected String email;
+    private final Integer id;
+    private String name;
+    private int salary;
+    private String position;
+    private LocalDate dateOfBirth;
+    private String email;
 
-    public Employee(String name, int salary, String position, int year, int month, int day, String email) {
-        this.name = name;
-        this.salary = salary;
-        this.position = position;
-        this.dateOfBirth = LocalDate.of(year, month, day);
-        this.email = email;
+    public Employee(Integer id, String name, int salary, String position, LocalDate dateOfBirth, String email) {
+        if (!Objects.isNull(id)) {
+            this.id = id;
+            this.name = name;
+            this.salary = salary;
+            this.position = position;
+            this.dateOfBirth = dateOfBirth;
+            this.email = email;
+        } else {
+            throw new IllegalArgumentException("Employee ID cannot be null!");
+        }
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -50,12 +60,20 @@ public class Employee {
         this.position = position;
     }
 
-    public void setDateOfBirth(int year, int month, int day) {
-        this.dateOfBirth = LocalDate.of(year, month, day);
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        if (!Objects.isNull(dateOfBirth)) {
+            this.dateOfBirth = dateOfBirth;
+        } else {
+            throw new IllegalArgumentException("Employee date of birth cannot be null!");
+        }
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        if (!Objects.isNull(email)) {
+            this.email = email;
+        } else {
+            throw new IllegalArgumentException("Employee email cannot be null!");
+        }
     }
 
     @Override
