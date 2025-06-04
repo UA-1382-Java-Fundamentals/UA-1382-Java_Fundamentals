@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class InputReader {
     static final Scanner SCANNER = new Scanner(System.in);
-    final static InputValidator VALIDATOR = new InputValidator();
+    static final InputValidator VALIDATOR = new InputValidator();
 
     public Integer readInteger(String prompt) {
         while (true) {
@@ -29,7 +29,6 @@ public class InputReader {
         return out;
     }
 
-    // TODO: change hashSet to LocalDate
     /**
     * Year : dateValues[0],
     * Month : dateValues[1],
@@ -78,13 +77,11 @@ public class InputReader {
     }
 
     private Integer parseInt(String input) {
-//        while (true) {
             try {
                 return Integer.parseInt(input);
             } catch (NumberFormatException e) {
                 throw new NumberFormatException("Invalid input! Enter an integer!");
             }
-//        }
     }
 
     public boolean readBoolean(String prompt) {
@@ -98,7 +95,7 @@ public class InputReader {
         }
     }
 
-    public String readStaffString(Map<Integer, Employee> employeeMap, String prompt) {
+    public String readStaffString(Map<Integer, Employee> employees, String prompt) {
         Pattern pattern = Pattern.compile("[^[\\d\\s,]]");
         while (true) {
             try {
@@ -108,9 +105,9 @@ public class InputReader {
                     if (matcher.find()) {
                         throw new IllegalArgumentException("Incorrect input format!");
                     }
-                    HashSet<Integer> staffSet = parseStaffString(stringStaff);
+                    HashSet<Integer> staffSet = (HashSet<Integer>) parseStaffString(stringStaff);
                     for (Integer id : staffSet) {
-                        if (!VALIDATOR.isEmployeePresent(employeeMap, id)) {
+                        if (!VALIDATOR.isEmployeePresent(employees, id)) {
                             throw new IllegalArgumentException("Incorrect employee id found!");
                         }
                     }

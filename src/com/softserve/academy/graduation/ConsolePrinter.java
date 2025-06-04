@@ -1,7 +1,5 @@
 package softserve.academy.graduation;
 
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -13,25 +11,22 @@ public class ConsolePrinter {
     final static InputValidator VALIDATOR = new InputValidator();
 
     public void outputEmployeeByName(
-            Map<Integer, Employee> employeeMap,
-            Map<Integer, Task> taskMap,
+            Map<Integer, Employee> employees,
+            Map<Integer, Task> tasks,
             String employeeName) {
-        HashMap<Integer, String> employeeNames = new HashMap<>();
-        int i = 0;
-        for (Employee employee : employeeMap.values()) {
-            employeeNames.put(i++, employee.getName().toLowerCase());
-        }
-        if (!employeeNames.containsValue(employeeName.toLowerCase())) {
+        List<String> employeeNames = employees.values().stream()
+                .map(Employee::getName)
+                .map(String::toLowerCase)
+                .toList();
+        if (!employeeNames.contains(employeeName.toLowerCase())) {
             System.out.println(employeeName + " not found!");
         } else {
-            Iterator<Map.Entry<Integer, Employee>> iterator = employeeMap.entrySet().iterator();
-            while (iterator.hasNext()) {
-                Map.Entry<Integer, Employee> entry = iterator.next();
-                if (employeeName.equalsIgnoreCase(((Employee) entry.getValue()).getName())) {
+            for (Map.Entry<Integer, Employee> entry : employees.entrySet()) {
+                if (employeeName.equalsIgnoreCase((entry.getValue()).getName())) {
                     printLine();
                     System.out.printf("Employee found:\n%s: %s\n", entry.getKey(), entry.getValue());
                     printLine();
-                    List<Task> tasksAssigned = EMP_HANDLER.getEmployeeTasks(taskMap, (Integer) entry.getKey());
+                    List<Task> tasksAssigned = EMP_HANDLER.getEmployeeTasks(tasks, entry.getKey());
                     if (!tasksAssigned.isEmpty()) {
                         System.out.printf("Tasks (%d) assigned to employee:\n", tasksAssigned.size());
                         for (Task task : tasksAssigned) {
@@ -40,24 +35,23 @@ public class ConsolePrinter {
                     } else {
                         System.out.printf(
                                 "No tasks assigned for employee %s (ID:%s).\n",
-                                employeeMap.get(entry.getKey()).getName(),
+                                employees.get(entry.getKey()).getName(),
                                 entry.getKey());
                     }
-
                 }
             }
         }
     }
 
     public void outputEmployeeById(
-            Map<Integer, Employee> employeeMap,
-            Map<Integer, Task> taskMap,
+            Map<Integer, Employee> employees,
+            Map<Integer, Task> tasks,
             Integer employeeId) {
-        if (VALIDATOR.isIdValid(employeeMap, employeeId)) {
+        if (VALIDATOR.isIdValid(employees, employeeId)) {
             printLine();
-            System.out.printf("Employee found:\n%s: %s\n", employeeId, employeeMap.get(employeeId));
+            System.out.printf("Employee found:\n%s: %s\n", employeeId, employees.get(employeeId));
             printLine();
-            List<Task> tasksAssigned = EMP_HANDLER.getEmployeeTasks(taskMap, employeeId);
+            List<Task> tasksAssigned = EMP_HANDLER.getEmployeeTasks(tasks, employeeId);
             if (!tasksAssigned.isEmpty()) {
                 System.out.printf("Tasks (%d) assigned to employee:\n", tasksAssigned.size());
                 for (Task task : tasksAssigned) {
@@ -66,89 +60,88 @@ public class ConsolePrinter {
             } else {
                 System.out.printf(
                         "No tasks assigned for employee %s (ID:%d).\n",
-                        employeeMap.get(employeeId).getName(),
+                        employees.get(employeeId).getName(),
                         employeeId);
             }
         }
     }
 
-    public void printEmployeeName(Map<Integer, Employee> employeeMap, Integer employeeId) {
+    public void printEmployeeName(Map<Integer, Employee> employees, Integer employeeId) {
         printLine();
-        System.out.printf("Current name: %s\n", employeeMap.get(employeeId).getName());
+        System.out.printf("Current name: %s\n", employees.get(employeeId).getName());
     }
 
-    public void printEmployeeSalary(Map<Integer, Employee> employeeMap, Integer employeeId) {
+    public void printEmployeeSalary(Map<Integer, Employee> employees, Integer employeeId) {
         printLine();
-        System.out.printf("Current salary: %s\n", employeeMap.get(employeeId).getSalary());
+        System.out.printf("Current salary: %s\n", employees.get(employeeId).getSalary());
     }
 
-    public void printEmployeePosition(Map<Integer, Employee> employeeMap, Integer employeeId) {
+    public void printEmployeePosition(Map<Integer, Employee> employees, Integer employeeId) {
         printLine();
-        System.out.printf("Current position: %s\n", employeeMap.get(employeeId).getPosition());
+        System.out.printf("Current position: %s\n", employees.get(employeeId).getPosition());
     }
 
-    public void printEmployeeDate(Map<Integer, Employee> employeeMap, Integer employeeId) {
+    public void printEmployeeDate(Map<Integer, Employee> employees, Integer employeeId) {
         printLine();
-        System.out.printf("Current date of birth: %s\n", employeeMap.get(employeeId).getDateOfBirth());
+        System.out.printf("Current date of birth: %s\n", employees.get(employeeId).getDateOfBirth());
     }
 
-    public void printEmployeeEmail(Map<Integer, Employee> employeeMap, Integer employeeId) {
+    public void printEmployeeEmail(Map<Integer, Employee> employees, Integer employeeId) {
         printLine();
-        System.out.printf("Current email: %s\n", employeeMap.get(employeeId).getEmail());
+        System.out.printf("Current email: %s\n", employees.get(employeeId).getEmail());
     }
 
-    public void printEmployeeMap(Map<Integer, Employee> employeeMap) {
-        for (Map.Entry<Integer, Employee> entry : employeeMap.entrySet()) {
+    public void printEmployees(Map<Integer, Employee> employees) {
+        for (Map.Entry<Integer, Employee> entry : employees.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue().toString());
         }
     }
-    public void outputTaskById(Map<Integer, Task> taskMap, Integer taskId, Map<Integer, Employee> employeeMap) {
-        if (VALIDATOR.isIdValid(taskMap, taskId)) {
+
+    public void outputTaskById(Map<Integer, Task> tasks, Integer taskId, Map<Integer, Employee> employees) {
+        if (VALIDATOR.isIdValid(tasks, taskId)) {
             printLine();
-            System.out.println(taskMap.get(taskId).toString());
-            printTaskStaff(taskMap, employeeMap, taskId);
+            System.out.println(tasks.get(taskId).toString());
+            printTaskStaff(tasks, employees, taskId);
         }
     }
 
-    public void printTaskName(Map<Integer, Task> taskMap, Integer taskId) {
+    public void printTaskName(Map<Integer, Task> tasks, Integer taskId) {
         printLine();
-        System.out.printf("Current name: %s\n", taskMap.get(taskId).getName());
+        System.out.printf("Current name: %s\n", tasks.get(taskId).getName());
     }
 
-    public void printTaskPriority(Map<Integer, Task> taskMap, Integer taskId) {
+    public void printTaskPriority(Map<Integer, Task> tasks, Integer taskId) {
         printLine();
-        System.out.printf("Current priority: %s\n", taskMap.get(taskId).getPriority());
+        System.out.printf("Current priority: %s\n", tasks.get(taskId).getPriority());
     }
 
-    public void printTaskIsActive(Map<Integer, Task> taskMap, Integer taskId) {
+    public void printTaskIsActive(Map<Integer, Task> tasks, Integer taskId) {
         printLine();
-        System.out.printf("Currently active: %s\n", taskMap.get(taskId).isActive() ? "yes" : "no");
+        System.out.printf("Currently active: %s\n", tasks.get(taskId).isActive() ? "yes" : "no");
     }
 
-    public void printTaskStaff(Map<Integer, Task> taskMap, Map<Integer, Employee> employeeMap, Integer taskId) {
+    public void printTaskStaff(Map<Integer, Task> tasks, Map<Integer, Employee> employees, Integer taskId) {
         printLine();
-        List<Employee> employeesEngaged = TASK_HANDLER.getEmployeesEngaged(employeeMap, taskMap, taskId);
+        Map<Integer, Employee> employeesEngaged = TASK_HANDLER.getEmployeesEngaged(employees, tasks, taskId);
         if (!employeesEngaged.isEmpty()) {
             System.out.printf("Employees (%d) engaged in task:\n", employeesEngaged.size());
-            for (Employee employee : employeesEngaged) {
-                System.out.println(employee.toString());
-            }
+            printEmployees(employeesEngaged);
         } else {
             System.out.printf(
                     "No employees are engaged in task %s (ID:%d).\n",
-                    taskMap.get(taskId).getName(),
+                    tasks.get(taskId).getName(),
                     taskId);
         }
     }
 
-    public void printTasksAll(Map<Integer, Task> taskMap) {
-        for (Map.Entry<Integer, Task> entry : taskMap.entrySet()) {
+    public void printTasksAll(Map<Integer, Task> tasks) {
+        for (Map.Entry<Integer, Task> entry : tasks.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue().toString());
         }
     }
 
-    public void printTasksActive(Map<Integer, Task> taskMap) {
-        for (Map.Entry<Integer, Task> entry : taskMap.entrySet()) {
+    public void printTasksActive(Map<Integer, Task> tasks) {
+        for (Map.Entry<Integer, Task> entry : tasks.entrySet()) {
             if (entry.getValue().isActive()) {
                 System.out.println(entry.getKey() + ": " + entry.getValue().toString());
             }

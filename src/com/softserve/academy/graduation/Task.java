@@ -4,16 +4,22 @@ import java.util.HashSet;
 import java.util.Objects;
 
 public class Task {
+    private final Integer id;
     private String name;
     private boolean activeFlag;
-    private int priority;
+    private Integer priority;
     private HashSet<Integer> staff;
 
-    public Task(String name, boolean activeFlag, int priority, HashSet<Integer> staffSet) {
-        this.name = name;
-        this.activeFlag = activeFlag;
-        this.priority = priority;
-        this.staff = staffSet;
+    public Task(Integer id, String name, boolean activeFlag, int priority, HashSet<Integer> staffSet) {
+        if (!Objects.isNull(id)) {
+            this.id = id;
+            this.name = name;
+            this.activeFlag = activeFlag;
+            this.priority = priority;
+            this.staff = staffSet;
+        } else {
+            throw new IllegalArgumentException("Task ID cannot be null!");
+        }
     }
 
     public boolean isActive() {
@@ -40,24 +46,33 @@ public class Task {
         this.activeFlag = activeFlag;
     }
 
-    public void setPriority(int priority) {
-        this.priority = priority;
+    public void setPriority(Integer priority) {
+        if (!Objects.isNull(priority)) {
+            this.priority = priority;
+        } else {
+            throw new IllegalArgumentException("Task priority cannot be null!");
+        }
     }
 
     public void setStaff(HashSet<Integer> staffSet) {
-        this.staff = staffSet;
+        if (!Objects.isNull(staffSet)) {
+            this.staff = staffSet;
+        } else {
+            throw new IllegalArgumentException("Task staff cannot be null!");
+        }
+
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return Objects.equals(name, task.name);
+        return Objects.equals(id, task.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(id);
     }
 
     @Override

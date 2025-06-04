@@ -4,20 +4,28 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Employee {
+    private final Integer id;
     private String name;
     private int salary;
     private String position;
     private LocalDate dateOfBirth;
     private String email;
 
-    // validate for not null
-    // email, dateOfBirth
-    public Employee(String name, int salary, String position, LocalDate dateOfBirth, String email) {
-        this.name = name;
-        this.salary = salary;
-        this.position = position;
-        this.dateOfBirth = dateOfBirth;
-        this.email = email;
+    public Employee(Integer id, String name, int salary, String position, LocalDate dateOfBirth, String email) {
+        if (!Objects.isNull(id)) {
+            this.id = id;
+            this.name = name;
+            this.salary = salary;
+            this.position = position;
+            this.dateOfBirth = dateOfBirth;
+            this.email = email;
+        } else {
+            throw new IllegalArgumentException("Employee ID cannot be null!");
+        }
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -52,14 +60,20 @@ public class Employee {
         this.position = position;
     }
 
-    //add validation not null
     public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+        if (!Objects.isNull(dateOfBirth)) {
+            this.dateOfBirth = dateOfBirth;
+        } else {
+            throw new IllegalArgumentException("Employee date of birth cannot be null!");
+        }
     }
 
-    //add validation not null
     public void setEmail(String email) {
-        this.email = email;
+        if (!Objects.isNull(email)) {
+            this.email = email;
+        } else {
+            throw new IllegalArgumentException("Employee email cannot be null!");
+        }
     }
 
     @Override

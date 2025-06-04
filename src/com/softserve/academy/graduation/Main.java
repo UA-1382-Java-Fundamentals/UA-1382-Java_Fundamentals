@@ -12,32 +12,23 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Map<Integer, Employee> employeeMap = new LinkedHashMap<>(Map.of(
-                1, new Employee("John Doe", 3000, "Senior", LocalDate.of(1988,8,19), "dojo@gmail.com"),
-                3, new Employee("Clive Barker", 1000, "Junior", LocalDate.of(2002, 5, 8), "cbark@gmail.com"),
-                4, new Employee("Stephen Brown", 1100, "Junior", LocalDate.of(2001, 6, 20), "stbro@gmail.com"),
-                2, new Employee("Mike Foo", 2200, "Middle", LocalDate.of(1996, 10, 16), "mikefmike@gmail.com"),
-                5, new Employee("Ellen Bar", 1900, "Middle", LocalDate.of(1992, 9, 13), "bar.ellen@gmail.com"),
-                7, new Employee("Helga Deere", 3200, "Senior", LocalDate.of(1986, 11, 3), "hedeere@gmail.com"),
-                6, new Employee("Frank Best", 3400, "Senior", LocalDate.of(1985,12,20), "bestfbest@gmail.com")
+        Map<Integer, Employee> employees = new LinkedHashMap<>(Map.of(
+                1,new Employee(1,"John Doe", 3000, "Senior", LocalDate.of(1988,8,19), "dojo@gmail.com"),
+                3,new Employee(3,"Clive Barker", 1000, "Junior", LocalDate.of(2002, 5, 8), "cbark@gmail.com"),
+                4,new Employee(4,"Stephen Brown", 1100, "Junior", LocalDate.of(2001, 6, 20), "stbro@gmail.com"),
+                2,new Employee(2,"Mike Foo", 2200, "Middle", LocalDate.of(1996, 10, 16), "mikefmike@gmail.com"),
+                5,new Employee(5,"Ellen Bar", 1900, "Middle", LocalDate.of(1992, 9, 13), "bar.ellen@gmail.com"),
+                7,new Employee(7,"Helga Deere", 3200, "Senior", LocalDate.of(1986, 11, 3), "hedeere@gmail.com"),
+                6,new Employee(6,"Frank Best", 3400, "Senior", LocalDate.of(1985,12,20), "bestfbest@gmail.com")
         ));
 
-        /*Map<Integer, Task> taskMap = new LinkedHashMap<>(Map.of(
-                1, new Task("Juniors' education", true, 4, "1 2 6"),
-                2, new Task("Site updates", true, 2, "3 5 7"),
-                3, new Task("Power plant software engineering", true, 0, "4 5"),
-                4, new Task("Finish unit tests", false, 7, "6 1 2"),
-                5, new Task("University education management", false, 10, "3 4 7"),
-                6, new Task("Interview recruits", true, 3, "0")
-        ));*/
-
-        Map<Integer, Task> taskMap = new LinkedHashMap<>(Map.of(
-                1, new Task("Juniors' education", true, 4, new HashSet<>(Set.of(1, 2, 6))),
-                2, new Task("Site updates", true, 2, new HashSet<>(Set.of(3, 5, 7))),
-                3, new Task("Power plant software engineering", true, 0, new HashSet<>(Set.of(4, 5))),
-                4, new Task("Finish unit tests", false, 7, new HashSet<>(Set.of(6, 1, 2))),
-                5, new Task("University education management", false, 10, new HashSet<>(Set.of(3, 4, 7))),
-                6, new Task("Interview recruits", true, 3, new HashSet<>(Set.of(0)))
+        Map<Integer, Task> tasks = new LinkedHashMap<>(Map.of(
+                1, new Task(1,"Juniors' education", true, 4, new HashSet<>(Set.of(1, 2, 6))),
+                2, new Task(2,"Site updates", true, 2, new HashSet<>(Set.of(3, 5, 7))),
+                3, new Task(3,"Power plant software engineering", true, 0, new HashSet<>(Set.of(4, 5))),
+                4, new Task(4,"Finish unit tests", false, 7, new HashSet<>(Set.of(6, 1, 2))),
+                5, new Task(5,"University education management", false, 10, new HashSet<>(Set.of(3, 4, 7))),
+                6, new Task(6,"Interview recruits", true, 3, new HashSet<>(Set.of(0)))
         ));
 
         boolean killSwitch = false;
@@ -78,7 +69,7 @@ public class Main {
                             // Show current employees
                             case 1: {
                                 PRINTER.printMenuString("Main menu > Employee > Show current employees");
-                                PRINTER.printEmployeeMap(employeeMap);
+                                PRINTER.printEmployees(employees);
                                 PRINTER.printSeparator();
                                 break;
                             }
@@ -92,7 +83,7 @@ public class Main {
                                 LocalDate newDateOfBirth = READER.readDate("Enter date of birth (YYYY-MM-DD): ");
                                 String newEmail = READER.readEmployeeEmail("Enter email: ");
                                 EMP_HANDLER.addEmployee(
-                                        employeeMap,
+                                        employees,
                                         newName,
                                         newSalary,
                                         newPosition,
@@ -107,7 +98,7 @@ public class Main {
                             case 3: {
                                 PRINTER.printMenuString("Main menu > Employee > Remove employee");
                                 Integer employeeId = READER.readInteger("Enter employee's id: ");
-                                EMP_HANDLER.removeEmployeeById(employeeMap, taskMap, employeeId);
+                                EMP_HANDLER.removeEmployeeById(employees, tasks, employeeId);
                                 PRINTER.printSeparator();
                                 break;
                             }
@@ -116,24 +107,24 @@ public class Main {
                             case 4: {
                                 PRINTER.printMenuString("Main menu > Employee > Edit employee");
                                 int targetId = READER.readInteger("Choose employee's ID from the list above: ");
-                                if (VALIDATOR.isIdValid(employeeMap, targetId)) {
+                                if (VALIDATOR.isIdValid(employees, targetId)) {
 
-                                    PRINTER.printEmployeeName(employeeMap, targetId);
+                                    PRINTER.printEmployeeName(employees, targetId);
                                     String newName = READER.readEmployeeName("Enter new name: ");
 
-                                    PRINTER.printEmployeeSalary(employeeMap, targetId);
+                                    PRINTER.printEmployeeSalary(employees, targetId);
                                     int newSalary = READER.readInteger("Enter new salary: ");
 
-                                    PRINTER.printEmployeePosition(employeeMap, targetId);
+                                    PRINTER.printEmployeePosition(employees, targetId);
                                     String newPosition = READER.readString("Enter new position: ");
 
-                                    PRINTER.printEmployeeDate(employeeMap, targetId);
+                                    PRINTER.printEmployeeDate(employees, targetId);
                                     LocalDate newDateOfBirth = READER.readDate("Enter new date of birth (YYYY-MM-DD): ");
 
-                                    PRINTER.printEmployeeEmail(employeeMap, targetId);
+                                    PRINTER.printEmployeeEmail(employees, targetId);
                                     String newEmail = READER.readEmployeeEmail("Enter email: ");
                                     EMP_HANDLER.editEmployee(
-                                            employeeMap,
+                                            employees,
                                             targetId,
                                             newName,
                                             newSalary,
@@ -165,8 +156,8 @@ public class Main {
                                         // Sort employees by ID
                                         case 1: {
                                             PRINTER.printMenuString("Main menu > Employee > Sort > By ID");
-                                            EMP_HANDLER.sortEmployeesById(employeeMap);
-                                            PRINTER.printEmployeeMap(employeeMap);
+                                            EMP_HANDLER.sortEmployeesById(employees);
+                                            PRINTER.printEmployees(employees);
                                             PRINTER.printSeparator();
                                             break;
                                         }
@@ -174,8 +165,8 @@ public class Main {
                                         // Sort employees by name
                                         case 2: {
                                             PRINTER.printMenuString("Main menu > Employee > Sort > By name");
-                                            EMP_HANDLER.sortEmployeesByName(employeeMap);
-                                            PRINTER.printEmployeeMap(employeeMap);
+                                            EMP_HANDLER.sortEmployeesByName(employees);
+                                            PRINTER.printEmployees(employees);
                                             PRINTER.printSeparator();
                                             break;
                                         }
@@ -183,8 +174,8 @@ public class Main {
                                         // Sort employees by position
                                         case 3: {
                                             PRINTER.printMenuString("Main menu > Employee > Sort > By position");
-                                            EMP_HANDLER.sortEmployeesByPosition(employeeMap);
-                                            PRINTER.printEmployeeMap(employeeMap);
+                                            EMP_HANDLER.sortEmployeesByPosition(employees);
+                                            PRINTER.printEmployees(employees);
                                             PRINTER.printSeparator();
                                             break;
                                         }
@@ -217,7 +208,7 @@ public class Main {
                                         // Get employee by ID
                                         case 1: {
                                             Integer employeeId = READER.readInteger("Enter employee's id: ");
-                                            PRINTER.outputEmployeeById(employeeMap, taskMap, employeeId);
+                                            PRINTER.outputEmployeeById(employees, tasks, employeeId);
                                             PRINTER.printSeparator();
                                             break;
                                         }
@@ -225,7 +216,7 @@ public class Main {
                                         // Get employee by name
                                         case 2: {
                                             String employeeName = READER.readString("Enter employee's name: ");
-                                            PRINTER.outputEmployeeByName(employeeMap, taskMap, employeeName);
+                                            PRINTER.outputEmployeeByName(employees, tasks, employeeName);
                                             PRINTER.printSeparator();
                                             break;
                                         }
@@ -273,7 +264,7 @@ public class Main {
                             // show active tasks only
                             case 1: {
                                 PRINTER.printMenuString("Main menu > Task > Show active tasks");
-                                PRINTER.printTasksActive(taskMap);
+                                PRINTER.printTasksActive(tasks);
                                 PRINTER.printSeparator();
                                 break;
                             }
@@ -281,7 +272,7 @@ public class Main {
                             // show full task list
                             case 2: {
                                 PRINTER.printMenuString("Main menu > Task > Show all tasks");
-                                PRINTER.printTasksAll(taskMap);
+                                PRINTER.printTasksAll(tasks);
                                 PRINTER.printSeparator();
                                 break;
                             }
@@ -290,7 +281,7 @@ public class Main {
                             case 3: {
                                 PRINTER.printMenuString("Main menu > Task > Tasks details");
                                 Integer taskId = READER.readInteger("Enter task id: ");
-                                PRINTER.outputTaskById(taskMap, taskId, employeeMap);
+                                PRINTER.outputTaskById(tasks, taskId, employees);
                                 PRINTER.printSeparator();
                                 break;
                             }
@@ -302,11 +293,11 @@ public class Main {
                                 int newPriority = READER.readInteger("Enter priority (0 for critical): ");
                                 boolean newStatus = READER.readBoolean("Is task active (yes/no): ");
                                 String newStaff = READER.readStaffString(
-                                        employeeMap,
+                                        employees,
                                         "Enter employees' IDs involved in task separated by coma (i.e. 1, 2, 3):\n" +
                                                 "(type 0 to leave field empty and fill it later): ");
                                 TASK_HANDLER.addTask(
-                                        taskMap,
+                                        tasks,
                                         newName,
                                         newStatus,
                                         newPriority,
@@ -320,7 +311,7 @@ public class Main {
                             case 5: {
                                 PRINTER.printMenuString("Main menu > Task > Remove task");
                                 Integer taskId = READER.readInteger("Enter task ID: ");
-                                TASK_HANDLER.removeTaskById(taskMap, taskId);
+                                TASK_HANDLER.removeTaskById(tasks, taskId);
                                 PRINTER.printSeparator();
                                 break;
                             }
@@ -344,8 +335,8 @@ public class Main {
                                         // sort tasks by ID
                                         case 1: {
                                             PRINTER.printMenuString("Main menu > Tasks > Sort > By ID");
-                                            TASK_HANDLER.sortTasksById(taskMap);
-                                            PRINTER.printTasksAll(taskMap);
+                                            TASK_HANDLER.sortTasksById(tasks);
+                                            PRINTER.printTasksAll(tasks);
                                             PRINTER.printSeparator();
                                             break;
                                         }
@@ -353,8 +344,8 @@ public class Main {
                                         // sort tasks by priority
                                         case 2: {
                                             PRINTER.printMenuString("Main menu > Tasks > Sort > By priority");
-                                            TASK_HANDLER.sortTasksByPriority(taskMap);
-                                            PRINTER.printTasksAll(taskMap);
+                                            TASK_HANDLER.sortTasksByPriority(tasks);
+                                            PRINTER.printTasksAll(tasks);
                                             PRINTER.printSeparator();
                                             break;
                                         }
@@ -374,24 +365,24 @@ public class Main {
                             case 7: {
                                 PRINTER.printMenuString("Main menu > Task > Edit task");
                                 int targetId = READER.readInteger("Enter task ID: ");
-                                if (VALIDATOR.isIdValid(taskMap, targetId)) {
+                                if (VALIDATOR.isIdValid(tasks, targetId)) {
 
-                                    PRINTER.printTaskName(taskMap, targetId);
+                                    PRINTER.printTaskName(tasks, targetId);
                                     String newName = READER.readString("Enter new name: ");
 
-                                    PRINTER.printTaskPriority(taskMap, targetId);
+                                    PRINTER.printTaskPriority(tasks, targetId);
                                     int newPriority = READER.readInteger("Enter new priority (0 for critical): ");
 
-                                    PRINTER.printTaskIsActive(taskMap, targetId);
+                                    PRINTER.printTaskIsActive(tasks, targetId);
                                     boolean newStatus = READER.readBoolean("Is task active (yes/no): ");
 
-                                    PRINTER.printTaskStaff(taskMap, employeeMap, targetId);
+                                    PRINTER.printTaskStaff(tasks, employees, targetId);
                                     String newStaff = READER.readStaffString(
-                                            employeeMap,
+                                            employees,
                                             "Enter employees' IDs involved in task (separated by space):\n" +
                                                     "(type 0 to leave field empty and fill later): ");
                                     TASK_HANDLER.editTask(
-                                            taskMap,
+                                            tasks,
                                             targetId,
                                             newName,
                                             newStatus,
