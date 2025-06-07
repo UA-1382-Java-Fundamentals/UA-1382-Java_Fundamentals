@@ -8,8 +8,11 @@ public class Main {
         System.out.println("Enter http code:");
         int code = sc.nextInt();
 
-        HttpError error = new HttpError(code);
-
+        try {
+            HttpError error = new HttpError(code);
+        } catch (HttpError.HttpCodeNotFoundException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
 
     }
 }

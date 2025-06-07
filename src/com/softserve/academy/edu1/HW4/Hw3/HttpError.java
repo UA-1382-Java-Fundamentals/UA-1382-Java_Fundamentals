@@ -1,7 +1,13 @@
 package com.softserve.academy.edu1.HW4.Hw3;
 
+
 public class HttpError {
 
+    public static class HttpCodeNotFoundException extends Exception {
+        public HttpCodeNotFoundException(int code) {
+            super("HTTP code " + code + " not recognized.");
+        }
+    }
 
     enum HttpStatus {
         BAD_REQUEST(400, "Bad Request"),
@@ -11,22 +17,28 @@ public class HttpError {
         NOT_FOUND(404, "Not Found");
 
         private final int code;
-        private  final String message;
+        private final String message;
 
         HttpStatus(int code, String message) {
             this.code = code;
             this.message = message;
         }
-
     }
-    public  HttpError (int code) {
-        for(HttpStatus httpStatus : HttpStatus.values()) {
-            if(httpStatus.code == code) {
+
+    public HttpError(int code) throws HttpCodeNotFoundException {
+        boolean found = false;
+        for (HttpStatus httpStatus : HttpStatus.values()) {
+            if (httpStatus.code == code) {
                 System.out.println(httpStatus.message);
+                found = true;
+                break;
             }
         }
 
+        if (!found) {
+            throw new HttpCodeNotFoundException(code);
+        }
     }
-    
-
 }
+
+
