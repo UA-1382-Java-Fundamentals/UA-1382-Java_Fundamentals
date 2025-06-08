@@ -1,74 +1,140 @@
 package softserve.academy.edu17;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 
 public class TaskN {
-    public static void main(String[] args) {
-        int userSelection = 1;
+    final static Scanner SCANNER = new Scanner(System.in);
 
+    public static void main(String[] args) {
+        System.out.println("""
+                1. Input number and generate Fibonacci sequence
+                2. Decompose a number into a product of prime numbers
+                3. Input exchange rate and available UAH to get the new currency balance
+                4. Count the number of vowels
+                5. Check if this string is palindrome
+                6. Calculate number of words in text
+                7. Calculate n! (factorial)
+                8. Convert number to words
+                9. Try n times and discover how many times you can get over a margin
+                10. Find the number of steps for which you get 1, using the following process:
+                    input n > 1. If it is even, we divide it by 2, if it is odd, then multiply by 3 and add 1
+                11. Check bank card number using Luhn algorithm
+                12. Calculate the sum of all the multiples of 3 or 5 below input number
+                13. Find LCM for numbers between 1 and n (preferably n = 20)
+                14. We have coins of: 1, 2, 5, 10, 20, 50, 100 and 200.
+                    Find quantity of ways to compose 200, using these coins;
+                """);
+
+        int userSelection = readInteger("Enter task #: ");
+        String taskTitle = "";
+        String result = "";
         switch (userSelection) {
             case 1: {
-                System.out.println(generateFibonacci(10));
+                int genSize = readInteger("Enter the Fibonacci row size: ");
+                taskTitle = "Generate Fibonacci sequence";
+                result = generateFibonacci(genSize).toString();
                 break;
             }
             case 2: {
-                System.out.println(decomposeToPrimes(11112));
+                int number = readInteger("Enter the number to decompose: ");
+                taskTitle = "Decompose to primes";
+                result = decomposeToPrimes(number);
                 break;
             }
             case 3: {
-                printUAHtoUSD(30_000, 41.4717);
+                int sumUAH = readInteger("Enter the number of UAH to sell: ");
+                double rateUSD = readDouble("Enter the rate of UAH to USD: ");
+                taskTitle = "Currency exchange";
+                result = changeUAHtoUSD(sumUAH, rateUSD);
                 break;
             }
             case 4: {
-                System.out.println(countVowels("If we list all"));
+                String text = readString("Enter the text for counting vowels: ");
+                taskTitle = "Counting vowels";
+                result = countVowels(text).toString();
                 break;
             }
             case 5: {
-                System.out.println(isPalindrome("repaper"));
+                String text = readString("Enter the text to see if it is a palindrome: ");
+                taskTitle = "Is a palindrome";
+                result = isPalindrome(text)?"is palindrome":"is NOT a palindrome";
                 break;
             }
             case 6: {
-                System.out.println(countWords("Input text and   calculate number of words in this  text"));
+                String text = readString("Enter the text to count words in it: ");
+                taskTitle = "Count words in text";
+                result = countWords(text).toString();
                 break;
             }
             case 7: {
-                System.out.println(calculateFactorial(5));
+                int factorial = readInteger("Enter the number to calculate factorial: ");
+                taskTitle = "Get factorial";
+                result = Integer.toString(calculateFactorial(factorial));
                 break;
             }
             case 8: {
-                //8.	Input number in range from 1 to 1 000 000 and output this number in English
+                int number = readInteger("Enter the number to convert to words: ");
+                taskTitle = "Numbers to words";
+                result = numberToWords(number);
                 break;
             }
             case 9: {
-                System.out.println(countRandomValuesAboveMargin(10_000, 0.999));
+                int attempts = readInteger("Enter number of attempts: ");
+                double margin = readDouble("Enter margin: ");
+                taskTitle = "Count random values above the margin";
+                result = countRandomValuesAboveMargin(attempts, margin).toString();
                 break;
             }
             case 10: {
-                System.out.println(findStepsTillReduced(9));
+                taskTitle = "Steps till n becomes 1";
+                int steps = readInteger("Enter number to process: ");
+                result = Integer.toString(findStepsTillReduced(steps)) ;
                 break;
             }
             case 11: {
-                System.out.println(isCardNumberValid("17893729974"));
+                taskTitle = "Card number validator";
+                String cardNumber = readString("Enter the text to count words in it: ");
+                result = isCardNumberValid(cardNumber)?"is a valid card number":"is INVALID card number";
                 break;
             }
             case 12: {
-                System.out.println(getSumOfMultiples3and5BelowArg(1000));
+                taskTitle = "Sum of multiples of 3 and 5 below n";
+                int ceil = readInteger("Enter number ceiling argument: ");
+                result = Integer.toString(getSumOfMultiples3and5BelowArg(ceil));
                 break;
             }
             case 13: {
-                System.out.println(getLCMForNumbersUpToN(20));
+                taskTitle = "LCM";
+                int ceil = readInteger("Enter the top number of least common multiple's factors: ");
+                result = Integer.toString(getLCMForNumbersUpToN(ceil));
                 break;
             }
             case 14: {
-                List<Integer> coins = new ArrayList<>(List.of(1,2,5,10,20,50,100,200));
-                int targetSum = 200;
-                System.out.println(calculateWaysToAchieveSum(targetSum, coins));
+                taskTitle = "Get ways to combine coins";
+                List<Integer> coins = new ArrayList<>(List.of(1, 2, 5, 10, 20, 50, 100, 200));
+                int targetSum = readInteger("Enter the sum to get: ");
+                result = Integer.toString(calculateWaysToAchieveSum(targetSum, coins));
                 break;
             }
         }
+
+        String outFilePath = "src/com/softserve/academy/edu17/TaskResult.txt";
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(outFilePath))) {
+            bw.write(taskTitle + "\n");
+            bw.write(result);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private static int calculateWaysToAchieveSum(int targetSum, List<Integer> coins) {
@@ -151,6 +217,10 @@ public class TaskN {
     }
 
     private static boolean isCardNumberValid(String cardNumber) {
+        Pattern digits = Pattern.compile("^[0-9]+$");
+        if (!digits.matcher(cardNumber).matches()) {
+            throw new NumberFormatException("Card number is invalid");
+        }
         List<String> numbersString = new ArrayList<>(Arrays.asList(cardNumber.split("")));
         String checkDigitAvailable = numbersString.getLast();
         numbersString.removeLast();
@@ -228,7 +298,7 @@ public class TaskN {
                 .count();
     }
 
-    private static void printUAHtoUSD(int sumUAH, double rateUSD) {
+    private static String changeUAHtoUSD(int sumUAH, double rateUSD) {
 
         double equivalentUSD = sumUAH / rateUSD;
         double cutoutUSD = equivalentUSD % 10;
@@ -236,16 +306,11 @@ public class TaskN {
         double spentUAH = sumUSD * rateUSD;
         double changeUAH = cutoutUSD * rateUSD;
 
-        System.out.printf("UAH available:\t %d UAH\n" +
-                        "UAH-USD rate:\t %.4f\n" +
-                        "USD bought:\t\t %d USD\n" +
-                        "UAH spent:\t\t %.2f UAH\n" +
-                        "UAH change:\t\t %.2f UAH\n",
-                sumUAH,
-                rateUSD,
-                sumUSD,
-                spentUAH,
-                changeUAH);
+        return "UAH available:\t " + sumUAH + " UAH\n" +
+                "UAH-USD rate:\t " + rateUSD + "\n" +
+                "USD bought:\t\t " + sumUSD + " USD\n" +
+                "UAH spent:\t\t " + spentUAH + " UAH\n" +
+                "UAH change:\t\t " + changeUAH + " UAH\n";
     }
 
     private static String decomposeToPrimes(int n) {
@@ -253,11 +318,11 @@ public class TaskN {
             throw new IllegalArgumentException("n must be greater than 1");
         }
         List<Integer> factors = new ArrayList<>();
-        int decomp = n;
-        while (decomp != 1) {
-            for (int i = 2; i <= decomp; i++) {
-                if (isPrime(i) && (decomp % i) == 0) {
-                    decomp = decomp / i;
+        int decomposable = n;
+        while (decomposable != 1) {
+            for (int i = 2; i <= decomposable; i++) {
+                if (isPrime(i) && (decomposable % i) == 0) {
+                    decomposable = decomposable / i;
                     factors.add(i);
                     break;
                 }
@@ -284,7 +349,7 @@ public class TaskN {
 
     private static List<Integer> generateFibonacci(int limit) {
         List<Integer> sequence = new ArrayList<>(List.of(0, 1));
-        int n = 0;
+        int n;
         for (int i = 0; i < limit; i++) {
             n = sequence.getLast() + sequence.get(sequence.size() - 2);
             sequence.add(n);
@@ -292,28 +357,106 @@ public class TaskN {
         sequence.removeFirst();
         return sequence;
     }
+
+    private static String readUserInput(String message) {
+        System.out.print(message);
+        String out = SCANNER.nextLine();
+        if (out.isEmpty()) {
+            throw new IllegalArgumentException("Input cannot be empty!");
+        }
+        return out;
+    }
+
+    private static Double readDouble(String prompt) {
+        while (true) {
+            try {
+                String stringNumber = readUserInput(prompt);
+                return parseDouble(stringNumber);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static Integer readInteger(String prompt) {
+        while (true) {
+            try {
+                String stringNumber = readUserInput(prompt);
+                return parseInt(stringNumber);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static String readString(String prompt) {
+        while (true) {
+            try {
+                return readUserInput(prompt);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static Double parseDouble(String input) {
+        try {
+            return Double.parseDouble(input);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("Invalid input! Enter a double!");
+        }
+    }
+
+    private static Integer parseInt(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("Invalid input! Enter an integer!");
+        }
+    }
+
+    final static String[] BELOW_20 = {
+            "", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+            "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+            "sixteen", "seventeen", "eighteen", "nineteen"
+    };
+
+    final static String[] TENS = {
+            "", "", "twenty", "thirty", "forty", "fifty", "sixty",
+            "seventy", "eighty", "ninety"
+    };
+
+    final static String[] THOUSANDS = {
+            "", "thousand", "million"
+    };
+
+    private static String numberToWords(int num) {
+        if (num < 1 || num > 1_000_000) {
+            throw new IllegalArgumentException("Invalid number! Try number between 1 and 1_000_000!");
+        }
+        int i = 0;
+        StringBuilder words = new StringBuilder();
+
+        while (num > 0) {
+            if (num % 1000 != 0) {
+                words.insert(0, numberToWordsHelper(num % 1000) + THOUSANDS[i] + " ");
+            }
+            num /= 1000;
+            i++;
+        }
+
+        return words.toString().trim();
+    }
+
+    private static String numberToWordsHelper(int num) {
+        if (num == 0)
+            return "";
+        else if (num < 20)
+            return BELOW_20[num] + " ";
+        else if (num < 100)
+            return TENS[num / 10] + " " + numberToWordsHelper(num % 10);
+        else
+            return BELOW_20[num / 100] + " hundred " + numberToWordsHelper(num % 100);
+    }
+
 }
-
-//1.+	Input number and generate Fibonacci sequence (e.g. number: 6, result: 1, 1, 2, 3, 5, 8)
-//2.+	Input number and decompose this number into a product of prime numbers with their degrees (e.g. number: 84, result 2^2, 3, 7)
-//3.+	Input cost of dollar and sum of money in gryvna. Calculate how many dollars user can buy and change.
-//4.+	Input string and calculate number of loud letters (e.g. word: “My test text”, result: 3)
-//5.+	Input string and check if this string is palindrome (e.g. “ABCCBA”)
-//6.+	Input text and calculate number of words in this text
-//7.+	Input number n and calculate n! (e.g. 5! = 1*2*3*4*5 = 120)
-
-//9.+	Write method to return random value 0 or 1. Input number n, call this method n times and calculate how many times
-// were number one
-//10.+	Find the number of steps for which you get 1, using the following process: we take any
-//the natural number n is greater than one. If it is even, then divide it by 2, and if it is odd, then
-//multiply by 3 and add 1
-//11.+	Enter the credit card number from the manufacturer (Visa, MasterCard, American Express, Discover) and check for
-// the correct number (see how credit cards use the checksum)
-//12.+	If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9.
-// The sum of these multiples is 23. Find the sum of all the multiples of 3 or 5 below 1000.
-//13.	2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
-// What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
-//14.	In England the currency is made up of pound, £, and pence, p, and there are eight coins in general circulation:
-// 1p, 2p, 5p, 10p, 20p, 50p, £1 (100p) and £2 (200p).
-// It is possible to make £2 in the following way: 1×£1 + 1×50p + 2×20p + 1×5p + 1×2p + 3×1p.
-// How many different ways can £2 be made using any number of coins?
