@@ -4,14 +4,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Operations {
-    public static Set union(Set set1, Set set2) {
+    public static Set<String> union(Set<String> set1, Set<String> set2) {
         Set<String> unionSet = new HashSet<>(set1);
         unionSet.addAll(set2);
 
         return unionSet;
     }
 
-    public static Set intersect(Set set1, Set set2) {
+    public static Set<String> intersect(Set<String> set1, Set<String> set2) {
 
         Set<String> intersectSet = new HashSet<>(set1);
         intersectSet.retainAll(set2);
