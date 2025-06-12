@@ -27,15 +27,15 @@ public class Main {
         personMap.put("FirstName10", "LastName10");
 
         System.out.println("The original map:");
-        for (Map.Entry map : personMap.entrySet()) {
-            System.out.println(map.getKey() + ": " + map.getValue().toString());
+        for (Map.Entry<String, String> map : personMap.entrySet()) {
+            System.out.println(map.getKey() + ": " + map.getValue());
         }
 
         personMap.remove("Orest");
 
         System.out.println("\nThe map after removing of Orest:");
-        for (Map.Entry map : personMap.entrySet()) {
-            System.out.println(map.getKey() + ": " + map.getValue().toString());
+        for (Map.Entry<String, String> map : personMap.entrySet()) {
+            System.out.println(map.getKey() + ": " + map.getValue());
         }
 
     }
