@@ -35,7 +35,6 @@ public class Main {
         t1.start();
         t2.start();
 
-        //Мають вони зависнути через deadlock
         try {
             t1.join();
             t2.join();
@@ -43,6 +42,5 @@ public class Main {
             e.printStackTrace();
         }
 
-        System.out.println("Main thread ends (не буде виконано через deadlock)");
     }
 }
