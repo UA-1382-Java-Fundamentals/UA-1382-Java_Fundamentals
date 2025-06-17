@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Words words = new Words();
 
-        words.inputElements();
+        words.inputSentence();
         System.out.println("The sentence with single spaces: " + words.replaceSpaces());
     }
 }
