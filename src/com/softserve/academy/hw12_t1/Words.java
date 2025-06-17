@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Words {
     private String words;
 
-    public void inputElements() throws Exception {
+    public void inputSentence() throws Exception {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Input a sentence of 5 words");
