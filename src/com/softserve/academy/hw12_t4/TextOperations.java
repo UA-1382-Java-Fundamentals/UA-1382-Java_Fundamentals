@@ -15,17 +15,12 @@ public class TextOperations {
         Pattern pattern = Pattern.compile("^[a-z -]+$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(sc.nextLine());
 
-        try {
-            while (!matcher.find()) {
-                System.out.println("Not a correct format. Please input first name and last name using: English letters, spaces and hyphens");
-                matcher = pattern.matcher(sc.nextLine());
-            }
-
-            text = matcher.group();
-
-        } catch (Exception e) {
-            throw new Exception("Unknown error");
+        while (!matcher.find()) {
+            System.out.println("Not a correct format. Please input first name and last name using: English letters, spaces and hyphens");
+            matcher = pattern.matcher(sc.nextLine());
         }
+
+        text = matcher.group();
     }
 
     public void printf() {

@@ -9,20 +9,17 @@ public class Words {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Input a sentence of 5 words");
-        try {
+        words = sc.nextLine();
+
+        while (words.split("\\s").length != 5) {
+            System.out.println("Please enter a sentence of 5 words");
             words = sc.nextLine();
-            while (words.split("\\s").length != 5) {
-                System.out.println("Please enter a sentence of 5 words");
-                words = sc.nextLine();
-            }
-        } catch (Exception e) {
-            throw new Exception("Unknown error");
         }
     }
 
     // Identify the first longest word in the sentence
     public String theFirstLongestWord() {
-        String [] string = words.split("\\s");
+        String[] string = words.split("\\s");
         String maxWord = "";
 
         for (String s : string) {

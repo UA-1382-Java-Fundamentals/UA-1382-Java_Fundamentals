@@ -11,11 +11,7 @@ public class Text {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Input a sentence which includes at least once: a dollar sign ($) followed by any number of digits, a dot, and two digits after the dot");
-        try {
-            text = sc.nextLine();
-        } catch (Exception e) {
-            throw new Exception("Unknown error");
-        }
+        text = sc.nextLine();
     }
 
     // US currency format: a dollar sign ($) followed by any number of digits, a dot, and two digits after the dot
@@ -23,14 +19,10 @@ public class Text {
     public void outputUsCurrencyFormat() {
         Pattern pattern = Pattern.compile("\\$\\d+\\.\\d{2}");
         Matcher matcher = pattern.matcher(text);
-        boolean matchFound = false;
 
-        while (matcher.find()) {
+        if (matcher.find()) {
             System.out.println("US currency format: " + matcher.group());
-            matchFound = true;
-        }
-
-        if(!matchFound) {
+        } else {
             System.out.println("No US currency format in text");
         }
     }
